@@ -1,54 +1,40 @@
-# Astro Starter Kit: Basics
+🚀 INNOVATEProweb Template by Verónica
 
-```sh
-npm create astro@latest -- --template basics
-```
+Este proyecto es una plantilla web diseñada por Verónica para INNOVATEProweb, con el objetivo de mostrar a posibles clientes las capacidades y estilo visual que ofrecemos en el desarrollo de sitios web. La plantilla está diseñada para ser reutilizable y personalizable rápidamente, facilitando la adaptación a diferentes necesidades.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+✨ Descripción
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Esta plantilla es un ejemplo visual y funcional de cómo INNOVATEProweb puede ayudar a los negocios a establecer su presencia en línea de forma rápida y profesional. Además de servir como una demo para clientes potenciales, está pensada para ser fácilmente adaptable a diversos proyectos, lo que permite agilidad y eficiencia en la creación de sitios personalizados.
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+🔑 Características principales
 
-## 🚀 Project Structure
+    🎨 Diseño moderno y profesional: Creada con un enfoque en la innovación y la humanización, reflejando los valores de INNOVATEProweb.
+    ⚡ Tecnologías utilizadas: Astro y Tailwind CSS para un desarrollo rápido, eficiente y de alto rendimiento.
+    ♻️ Reutilizable: La plantilla es adaptable para distintos tipos de proyectos.
+    🚀 Optimización SEO y rendimiento: Incluye prácticas recomendadas para garantizar que los sitios creados con esta plantilla tengan un buen rendimiento y visibilidad en los motores de búsqueda.
 
-Inside of your Astro project, you'll see the following folders and files:
+🎯 Personalización
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+Para personalizar esta plantilla, puedes modificar fácilmente los estilos, contenido y estructura según las necesidades de cada cliente.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+✏️ Contenido
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Edita los textos y componentes visuales en los archivos correspondientes dentro de src/pages.
 
-Any static assets, like images, can be placed in the `public/` directory.
+🎨 Estilos
 
-## 🧞 Commands
+Los estilos están gestionados con Tailwind CSS. Puedes modificar las clases directamente en los archivos .astro o actualizar la configuración de tailwind.config.js para cambios globales.
 
-All commands are run from the root of the project, from a terminal:
+🖼️ Imágenes y recursos
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+Reemplaza los recursos en el directorio public para personalizar imágenes, logotipos y otros medios.
 
-## 👀 Want to learn more?
+🛠️ Tecnologías Utilizadas
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+    🌐 Astro: Framework moderno para construir sitios web estáticos y altamente eficientes.
+    💨 Tailwind CSS: Framework CSS de utilidad para un diseño rápido y personalizable.
+    ⚙️ JavaScript (opcional): Para agregar interactividad y lógica personalizada.
+
+📄 Licencia
+
+Este proyecto está bajo la licencia MIT.

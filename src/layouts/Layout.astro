@@ -1,50 +1,36 @@
 ---
-interface Props {
-	title: string;
-}
+import layoutText from "../Mocks/TextsViews/layoutText"
+import Footer from "./componentsLayout/Footer"
+import Navbar from "./componentsLayout/Navbar"
 
-const { title } = Astro.props;
+const { title, content } = Astro.props
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+		<head>
+			<meta charset="UTF-8" />
+			<meta name="description" content="Astro description" />
+			<meta name="viewport" content="width=device-width" />
+			<link rel="icon" type="image/svg+xml" href={layoutText.urlLogo} />
+			<meta name="generator" content={Astro.generator} />
+			<meta name="description" content={content} />
+			<title>{title}</title>
+			<!-- etiquetas para mejorar SEO organico - optimizan para ser compartidas en redes  -->
+			<meta property="og:title" content={title} />
+			<meta property="og:description" content={content} />
+			<meta property="og:image" content={layoutText.imageContentSeo} />
+			<meta property="og:type" content="website" />
+	
+			<meta name="twitter:card" content="summary_large_image" />
+			<meta name="twitter:title" content={title} />
+			<meta name="twitter:description" content={content} />
+			<meta name="twitter:image" content={layoutText.imageContentSeo} />
 	</head>
-	<body>
+	<body class="bg-BACKGROUND font-sans">
+		<Navbar client:load />
 		<slot />
 	</body>
+	<Footer client:load/>
 </html>
-<style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
-</style>
