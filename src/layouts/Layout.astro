@@ -1,9 +1,10 @@
 ---
-import layoutText from "../Mocks/TextsViews/layoutText"
+import { homeText } from "../mock/textViews/homeText"
 import Footer from "./componentsLayout/Footer"
 import Navbar from "./componentsLayout/Navbar"
 
 const { title, content } = Astro.props
+
 ---
 
 <!doctype html>
@@ -13,22 +14,22 @@ const { title, content } = Astro.props
 			<meta charset="UTF-8" />
 			<meta name="description" content="Astro description" />
 			<meta name="viewport" content="width=device-width" />
-			<link rel="icon" type="image/svg+xml" href={layoutText.urlLogo} />
+			<link rel="icon" type="image/svg+xml" href={homeText.urlLogo}/>
 			<meta name="generator" content={Astro.generator} />
 			<meta name="description" content={content} />
 			<title>{title}</title>
 			<!-- etiquetas para mejorar SEO organico - optimizan para ser compartidas en redes  -->
 			<meta property="og:title" content={title} />
 			<meta property="og:description" content={content} />
-			<meta property="og:image" content={layoutText.imageContentSeo} />
+			<meta property="og:image" content={homeText.imageContentSeo} />
 			<meta property="og:type" content="website" />
 	
 			<meta name="twitter:card" content="summary_large_image" />
 			<meta name="twitter:title" content={title} />
 			<meta name="twitter:description" content={content} />
-			<meta name="twitter:image" content={layoutText.imageContentSeo} />
+			<meta name="twitter:image" content={homeText.imageContentSeo} />
 	</head>
-	<body class="bg-BACKGROUND font-sans">
+	<body class="bg-CBACKGROUND font-sans overflow-y-scroll font-semibold text-sm md:text-[15px] xl:text-base">
 		<Navbar client:load />
 		<slot />
 	</body>

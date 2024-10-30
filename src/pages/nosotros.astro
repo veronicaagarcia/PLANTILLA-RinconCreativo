@@ -1,0 +1,129 @@
+---
+import Layout from '../layouts/Layout.astro'
+import { nosotrosText } from '../mock/textViews/nosotrosText'
+import { homeText } from '../mock/textViews/homeText'
+import Subtitle from '../components/Subtitle'
+import Text from '../components/Text'
+import { Team } from '../mock/team'
+
+// Definir las imágenes para el componente de imágenes superpuestas
+const nosotrosImages = [
+  { src: "public/images/nosotros1.jpg", alt: `Imagen de ${homeText.clientName}` },
+  { src: "public/images/nosotros2.jpg", alt: `Imagen de ${homeText.clientName}` },
+  { src: "public/images/nosotros3.jpg", alt: `Imagen de ${homeText.clientName}` },
+];
+
+// Definir el contenido para misión, visión y valores
+const mvvContent = [
+  { content: nosotrosText.mision, icon: "M" },
+  { content: nosotrosText.vision, icon: "V" },
+  { content: nosotrosText.valores, icon: "Va" },
+];
+---
+
+<Layout title={nosotrosText.metaTitle} content={nosotrosText.metaContent}>
+	<main>
+		<section class="w-full mx-auto px-4 py-8 md:w-11/12 xl:w-10/12 border-2 border-t-0 border-b-0 border-dashed md:border-3 md:border-y-0 border-COLOR1 flex flex-col justify-center items-center">
+
+			<!-- Primera seccion (subtitulo y tres imagenes superpuestas) -->
+			<Subtitle name={nosotrosText.Subtitle1} bgColor='bg-COLOR3' textColor='CBACKGROUND' client:visible />
+			<figure class="w-full mt-8">
+				<div class="relative w-full h-64 sm:h-80 md:h-96 lg:h-112 xl:h-128 overflow-hidden">
+				  {nosotrosImages.map((image, index) => (
+					<div 
+					  class={`absolute top-0 left-0 w-4/5 h-full transition-transform duration-300 ease-in-out transform hover:scale-105 hover:z-10 ${
+						index === 0 ? 'z-30' : 
+						index === 1 ? 'z-20 translate-x-[20%]' : 
+						'z-10 translate-x-[40%]'
+					  }`}
+					>
+					  <img 
+						src={image.src} 
+						alt={image.alt} 
+						class="w-full h-full object-cover rounded-lg shadow-lg"
+					  />
+					</div>
+				  ))}
+				</div>
+			</figure>
+
+			<!-- HISTORIA, subtitulo y texto -->
+			<Subtitle name={nosotrosText.Subtitle2} bgColor='bg-COLOR2' textColor='COLOR-1' client:visible />
+			<Text text={nosotrosText.text1} textColor='COLOR1' client:visible/>
+
+			<!-- Mision, vision y valores -->
+			<Subtitle name={nosotrosText.Subtitle3} bgColor='bg-COLOR3' textColor='CBACKGROUND' client:visible />
+			<div class="w-full mt-12">
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+					{mvvContent.map((item) => (
+						<div class="bg-COLOR1 hover:bg-CBACKGROUND text-CBACKGROUND hover:text-COLOR1 rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105">
+							<div class="p-6">
+								<div class="flex items-center justify-center w-12 h-12 bg-COLOR3 rounded-full text-CBACKGROUND text-xl font-bold mb-4">
+									{item.icon}
+								</div>
+								<p>{item.content}</p>
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+
+			<!-- Nuestro equipo -->
+			<Subtitle name={nosotrosText.Subtitle4} bgColor='bg-COLOR2' textColor='CBACKGROUND' client:visible />
+			<Text text={nosotrosText.text2} textColor='COLOR1' client:visible/>
+			<div class="w-full mt-12">
+				<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+				  {Team.map((member) => (
+					<div class="flip-card bg-transparent w-full h-64">
+					  <div class="flip-card-inner relative w-full h-full transition-transform duration-700 transform-style-preserve-3d">
+						<div class="flip-card-front absolute w-full h-full bg-CBACKGROUND rounded-lg shadow-lg overflow-hidden">
+						  <img src={member.image} alt={member.name} class="w-full h-48 object-cover" />
+						  <div class="p-4">
+							<h3 class="text-lg font-semibold text-COLOR1">{member.name}</h3>
+							<p class="text-sm text-COLOR3">{member.role}</p>
+						  </div>
+						</div>
+						<div class="flip-card-back absolute w-full h-full bg-COLOR1 text-CBACKGROUND rounded-lg shadow-lg overflow-hidden flex flex-col justify-center items-center p-4 transform rotate-y-180">
+						  <h3 class="text-lg font-semibold mb-2">{member.name}</h3>
+						  <p class="text-sm text-center">{member.description}</p>
+						</div>
+					  </div>
+					</div>
+				  ))}
+				</div>
+			</div>
+
+        </section>
+    </main>
+</Layout>
+
+<script>
+	const images = document.querySelectorAll('.relative > div');
+	images.forEach((img) => {
+	  const htmlImg = img as HTMLElement;
+	  htmlImg.addEventListener('mouseenter', () => {
+		htmlImg.style.zIndex = '40';
+	  });
+	  htmlImg.addEventListener('mouseleave', () => {
+		htmlImg.style.zIndex = '';
+	  });
+	});
+</script>
+  
+<style>
+	
+	.flip-card:hover .flip-card-inner {
+		transform: rotateY(180deg);
+	}
+	.flip-card-inner {
+		transition: transform 0.6s;
+		transform-style: preserve-3d;
+	}
+	.flip-card-front, .flip-card-back {
+		backface-visibility: hidden;
+	}
+	.flip-card-back {
+		transform: rotateY(180deg);
+	}
+
+</style>

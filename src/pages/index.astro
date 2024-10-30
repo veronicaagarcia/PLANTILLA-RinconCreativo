@@ -1,12 +1,14 @@
 ---
-import Button from '../components/shared/Button'
-import Card from '../components/shared/Card'
-import Subtitle from '../components/shared/Subtitle'
-import Text from '../components/shared/Text'
-import WsapBtn from '../components/shared/WsapBtn'
+import Button from '../components/Button'
+import Card from '../components/Card'
+import Subtitle from '../components/Subtitle'
+import Text from '../components/Text'
+import WsapBtn from '../components/WsapBtn'
 import Layout from '../layouts/Layout.astro'
-import homeText from '../Mocks/TextsViews/homeText'
-import layoutText from '../Mocks/TextsViews/layoutText'
+import { homeText } from '../mock/textViews/homeText'
+import { Servicios } from '../mock/servicios'
+import { Testimonios } from '../mock/testimonios'
+
 ---
 
 <Layout title={homeText.metaTitle} content={homeText.metaContent}>
@@ -14,68 +16,141 @@ import layoutText from '../Mocks/TextsViews/layoutText'
 		<!-- Primera seccion (titulo, imagen , texto y boton whatsapp) -->
 		 <section class="w-full mx-auto px-4 py-8 md:w-11/12 xl:w-10/12 border-2 border-t-0 border-b-0 border-dashed md:border-3 md:border-y-0 border-COLOR1 flex flex-col justify-center items-center">
 
-			<!-- Title subrayado animado -->
-			<div class="text-center w-full mx-auto relative after:absolute after:left-4 after:bottom-0 after:h-0.5 after:w-11/12 after:scale-x-0 after:bg-COLOR1 after:transition-transform after:duration-300 hover:after:scale-x-100">
-				<h1 class="text-center mx-auto font-heading font-medium text-lg bg-clip-text text-transparent bg-gradient-to-r from-COLOR2 to-COLOR3 md:text-xl xl:text-3xl scale-90 hover:scale-110 uppercase">{homeText.homeTitle}</h1>
-			</div>
-
-			<!-- imagen y texto (3 parrafos) -->
-			<div class="flex flex-col md:flex-row w-full md:gap-6 xl:gap-20 justify-center items-center md:mt-4">
-				<figure class="mx-auto my-2 flex justify-center xl:w-fit"><img class="transform hover:rotate-6 transition duration-300 ease-in-out hover:brightness-125 max-w-[250px] max-h-[240px] xl:max-w-[300px] xl:max-h-[290px] rounded-xl shadow-sm shadow-COLOR3 hover:shadow-lg hover:shadow-COLOR2 " src={homeText.homeFirstImg} alt={`Imagen inicio creatividad de ${layoutText.clientName}`}/></figure>
-				<div>
-					<p class="text-sm text-star animate-slideUp md:text-base xl:text-lg mt-4 md:mt-8 xl:mt-12 mb-4 md:mb-8 xl:mb-12 text-COLOR1 hover:text-COLOR2">{homeText.homeFirstTextP1}</p>
-					<p class="text-sm text-end animate-slideUp md:text-base xl:text-lg mb-4 md:mb-8 xl:mb-12 text-COLOR1 hover:text-COLOR3">{homeText.homeFirstTextP2}</p>
-					<p class="text-sm text-start animate-slideUp md:text-base xl:text-lg mb-4 md:mb-8 xl:mb-12 text-COLOR1 hover:text-COLOR2">{homeText.homeFirstTextP3}</p>
+			<!-- Title animado -->
+			<div class="text-center w-full mx-auto">
+				<div class="h-fit flex items-center justify-center">
+					<h1 class="text-2xl md:text-4xl font-bold">
+					  <span aria-hidden="true" class="block overflow-hidden">
+						<span class="inline-block animate-slide-right">
+						  <span class="text-gradient-right">{homeText.homeTitleParte1}</span>
+						</span>
+					  </span>
+					  <span aria-hidden="true" class="block overflow-hidden mt-2">
+						<span class="inline-block animate-slide-left">
+						  <span class="text-gradient-left">{homeText.homeTitleParte2}</span>
+						</span>
+					  </span>
+					</h1>
 				</div>
 			</div>
 
+			<!-- imagen y texto (3 parrafos) -->
+			<div class="flex flex-col md:flex-row w-full justify-center items-center mt-4 md:mt-8 xl:mt-12">
+				<figure class="mx-auto my-2 flex justify-center xl:w-fit relative group">
+				  <div class="transform rotate-2 group-hover:rotate-4 transition duration-300 ease-in-out group-hover:brightness-125 max-w-[250px] max-h-[250px] s:max-w-[390px] s:max-h-[390px] md:max-w-[400px] md:max-h-[400px] xl:max-w-[450px] xl:max-h-[650px] rounded-xl shadow-sm shadow-COLOR3 group-hover:shadow-lg group-hover:shadow-COLOR2 xl:group-hover:scale-110 overflow-hidden">
+					<img 
+					  class="w-full h-full object-cover transition-opacity duration-300 ease-in-out"
+					  src={homeText.homeFirstImg} 
+					  alt={`Imagen inicio creatividad de`}
+					/>
+					<!-- alt={`Imagen inicio creatividad de ${LayoutText.clientName}`} -->
+					<img 
+					  class="w-full h-full object-contain absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"
+					  src={homeText.homeSecondImg} 
+					/>
+				  </div>
+				</figure>
+				<div class="w-full md:w-10/12 md:mr-5 xl:mr-14 lg:w-5/12">
+				  <p class="text-star animate-slideUp mt-4 md:mt-8 xl:mt-12 mb-4 md:mb-8 xl:mb-12 text-COLOR1 hover:text-COLOR2">{homeText.homeFirstTextP1}</p>
+				  <p class="text-end animate-slideUp mb-4 md:mb-8 xl:mb-12 text-COLOR1 hover:text-COLOR3">{homeText.homeFirstTextP2}</p>
+				  <p class="text-start animate-slideUp mb-4 md:mb-8 xl:mb-12 text-COLOR1 hover:text-COLOR2">{homeText.homeFirstTextP3}</p>
+				</div>
+			  </div>
+
 			<!-- Boton que te lleva al whatsapp con un mensaje ya definido o el que se quiera mandar -->
 			<WsapBtn newMessage={''} client:visible>  
-				<h3 class="text-sm my-4 md:my-8 xl:my-12 md:text-base xl:text-lg text-BACKGROUND hover:cursor-pointer bg-COLOR1 hover:text-COLOR1 hover:bg-COLOR2 w-[230px] md:w-[250px] xl:w-[280px] h-[45px] md:h-[55px] xl:h-[65px] flex self-center text-center justify-center items-center m-auto rounded-xl">{homeText.TextFirstButton}</h3>
+				<h3 class="my-4 md:my-8 xl:my-12 text-CBACKGROUND hover:cursor-pointer bg-COLOR1 hover:text-COLOR1 hover:bg-COLOR2 w-[230px] md:w-[250px] xl:w-[280px] h-[45px] md:h-[55px] xl:h-[65px] flex self-center text-center justify-center items-center m-auto rounded-xl">{homeText.TextFirstButton}</h3>
 			</WsapBtn>
 
 			<!-- Segunda seccion (Subtitulo y texto presentacion servicios ) -->
-			<Subtitle name={homeText.Subtitle1} bgColor='COLOR2' textColor='COLOR1' client:visible/>
+			<Subtitle name={homeText.Subtitle1} bgColor='bg-COLOR3' textColor='CBACKGROUND' client:visible/>
 			<Text text={homeText.homeSecondText} textColor='COLOR1' client:visible/>
 
 			<!-- card servicios y link servicios-->
-			 <div class="flex flex-wrap justify-center w-full gap-4 md:gap-6 xl:gap-8">
-				<Card name={homeText.service1name} text={homeText.service1Text} img={homeText.service1Img} url={homeText.service1Url} bgColor='orange-100' bgNameColor='COLOR2' textButton="" textColor='COLOR1' arrowColor='COLOR2' bgArrow='COLOR1' client:visible/>
+			<div class="flex flex-wrap justify-center w-full gap-4 md:gap-6 ">
 
-				<Card name={homeText.service2name} text={homeText.service2Text} img={homeText.service2Img} url={homeText.service2Url} bgColor='COLOR2' bgNameColor='BACKGROUND' textButton="" textColor='COLOR1' arrowColor='COLOR2' bgArrow='COLOR1' client:visible/>
-
-				<Card name={homeText.service3name} text={homeText.service3Text} img={homeText.service3Img} url={homeText.service3Url} bgColor='COLOR1' bgNameColor='BACKGROUND' textButton="" textColor='COLOR2' arrowColor='COLOR1' bgArrow='BACKGROUND' client:visible/>
-
-				<Card name={homeText.service4name} text={homeText.service4Text} img={homeText.service4Img} url={homeText.service4Url} bgColor='orange-100' bgNameColor='COLOR2' textButton="" textColor='COLOR1' arrowColor='COLOR2' bgArrow='COLOR1' client:visible/>
-
-				<Card name={homeText.service5name} text={homeText.service5Text} img={homeText.service5Img}  url={homeText.service5Url} bgColor='COLOR2' textButton="" bgNameColor='BACKGROUND' textColor='COLOR1' arrowColor='COLOR2' bgArrow='COLOR1' client:visible/>
-			 </div>
+				{Servicios.map((servicio, index) => (
+					<Card 
+					  key={index}  
+					  name={servicio.name} 
+					  text={servicio.text} 
+					  img={servicio.img} 
+					  url={servicio.url} 
+					  bgColor={servicio.bgColor} 
+					  bgNameColor={servicio.bgNameColor}  
+					  textColor={servicio.textColor}  
+					  textButton="" 
+					  client:visible
+					/>
+				))}
+			</div>
 
 			<!-- Tercera seccion (card de nosotros y link a nosotros )-->
-			 <div class="rounded-xl my-8 md:my-12 xl:my-20 w-full bg-gradient-to-r from-BACKGROUND via-COLOR1 to-BACKGROUND hover:from-COLOR1 hover:via-BACKGROUND hover:to-COLOR1 hover:w-9/12 flex justify-center">
-				<Card name={homeText.nosotrosName} text={homeText.nosotrosText} textButton={homeText.nosotrosTextButon} url={homeText.nosotrosUrl} bgColor='BACKGROUND' bgNameColor='BACKGROUND' textColor='COLOR1' arrowColor='COLOR2' bgArrow='COLOR1' img="" client:visible/>
-			 </div>
-
-			<!-- Cuarta seccion (titulo, texto y cards testimonios) -->
+			<Subtitle name={homeText.nosotrosName} bgColor='bg-COLOR1' textColor='COLOR3' client:visible/>
+			<Text text={homeText.nosotrosText} textColor='COLOR1' client:visible/>
+			<Button text={homeText.nosotrosTextButon} url={homeText.nosotrosUrl} client:visible/>
+			<br/>
+			  
+			<!-- Cuarta seccion (subtitulo, texto y cards testimonios) -->
 			<div class="mx-auto flex flex-col justify-center items-center mb-8 md:mb-12 xl:mb-20">
-			 <Subtitle name={homeText.testimoniosName} bgColor='COLOR2' textColor='COLOR1' client:visible/>
+			 <Subtitle name={homeText.testimoniosName} bgColor='bg-COLOR2' textColor='CBACKGROUND' client:visible/>
 			 <Text text={homeText.testimoniosText} textColor='COLOR1' client:visible/>
-			 <!-- card testomonios -->
+
 			 <div class="flex flex-wrap justify-center w-full gap-4 md:gap-6 xl:gap-8">
-				<Card name={homeText.testimonio1name} text={homeText.testimonio1text} img='' url='' bgColor='COLOR1' bgNameColor='BACKGROUND' textButton="" textColor='COLOR3' arrowColor='' bgArrow='' client:visible/>
 
-				<Card name={homeText.testimonio2name} text={homeText.testimonio2text} img='' url='' bgColor='COLOR1' bgNameColor='BACKGROUND' textButton="" textColor='COLOR3' arrowColor='' bgArrow='' client:visible/>
-
-				<Card name={homeText.testimonio3name} text={homeText.testimonio3text} img='' url='' bgColor='COLOR1' bgNameColor='BACKGROUND' textButton="" textColor='COLOR3' arrowColor='' bgArrow='' client:visible/>
-
-				<Card name={homeText.testimonio4name} text={homeText.testimonio4text} img='' url='' bgColor='COLOR1' bgNameColor='BACKGROUND' textButton="" textColor='COLOR3' arrowColor='' bgArrow='' client:visible/>
+				{Testimonios.map((testimonio, index) => (
+					<Card 
+					  key={index}  
+					  name={testimonio.name} 
+					  text={testimonio.text} 
+					  bgColor='COLOR1' 
+					  bgNameColor='COLOR2' 
+					  textColor='CBACKGROUND' 
+					  url='' 
+					  img='' 
+					  textButton="" 
+					  client:visible
+					/>
+				))}
 			 </div>
 			</div>
 
 			<!-- cierre con boton que lleva a contacto -->
-			<Subtitle name={homeText.contactoName} bgColor='COLOR2' textColor='COLOR1' client:visible/>
+			<Subtitle name={homeText.contactoName} bgColor='bg-COLOR1' textColor='COLOR2' client:visible/>
 			<Text text={homeText.contactoText} textColor='COLOR1' client:visible/>
 			<Button text={homeText.contactoButtonText} url={homeText.contactoURL} client:visible/>
 		 </section>
 	</main>
 </Layout>
+
+<style>
+	@keyframes slideRight {
+	  from { transform: translateX(-100%); }
+	  to { transform: translateX(0); }
+	}
+  
+	@keyframes slideLeft {
+	  from { transform: translateX(100%); }
+	  to { transform: translateX(0); }
+	}
+  
+	.animate-slide-right {
+	  animation: slideRight 2s ease-out forwards;
+	}
+  
+	.animate-slide-left {
+	  animation: slideLeft 2s ease-out forwards;
+	  animation-delay: 0.5s;
+	}
+  
+	.text-gradient-right {
+	  @apply bg-clip-text text-transparent bg-gradient-to-r from-COLOR1 to-COLOR2;
+	  filter: drop-shadow(0 0 3em rgba(142, 250, 96, 0.5));
+	}
+  
+	.text-gradient-left {
+	  @apply bg-clip-text text-transparent bg-gradient-to-l from-COLOR1 to-COLOR2;
+	  filter: drop-shadow(0 0 3em rgba(142, 250, 96, 0.5));
+	}
+
+</style>
