@@ -10,7 +10,7 @@ export const Servicios = [
         "Los manuales de identidad corporativa son herramientas vitales para mantener la coherencia en todas las comunicaciones de tu marca. Creamos guías que cubren el uso correcto del logotipo, combinaciones de colores, estilos tipográficos y más. Este manual sirve como un recurso de referencia para asegurar que cualquier pieza de comunicación, desde la papelería hasta la publicidad, siga las directrices establecidas, fortaleciendo así tu presencia de marca.",
         "La aplicación de la identidad visual se extiende a cada punto de contacto con tu cliente. Desde la papelería hasta tu sitio web y redes sociales, garantizamos que tu nueva identidad visual se implemente de manera integral. Esto incluye crear plantillas de diseño que aseguren que tu marca se mantenga uniforme y profesional en todas las plataformas, facilitando el reconocimiento de marca."
     ],
-    img:"public/images/servicio2.jpg",
+    img:"/images/servicio2.jpg",
     url:"/servicios",
     bgColor:"orange-100",  
     bgNameColor:"COLOR2",
@@ -26,7 +26,7 @@ export const Servicios = [
         "Las infografías son una excelente forma de comunicar información compleja de manera visual y atractiva. Desarrollamos infografías que resumen datos clave y conceptos de manera clara, utilizando gráficos y visuales impactantes que facilitan la comprensión y la retención de la información por parte de tu audiencia.",
         "Los diseños para redes sociales son vitales en el marketing actual. Creamos contenido gráfico que no solo es atractivo, sino que también está optimizado para cada plataforma. Aseguramos que cada diseño se adapte a las especificaciones de la red social y que transmita tu mensaje de manera efectiva, contribuyendo al crecimiento de tu presencia digital."
     ],
-    img:"public/images/servicio1.jpg",
+    img:"/images/servicio1.jpg",
     url:"/servicios",
     bgColor:"COLOR2",  
     bgNameColor:"CBACKGROUND",
@@ -41,7 +41,7 @@ export const Servicios = [
         "Además, creamos prototipos de envases para realizar pruebas antes de la producción masiva. Esto nos permite ajustar y optimizar el diseño según los comentarios de los consumidores y las pruebas de usabilidad, asegurando que el producto final cumpla con tus expectativas y las de tus clientes.",
         "Finalmente, el diseño de packaging se extiende más allá de la forma y el color; incluye la tipografía, la ilustración y otros elementos gráficos que ayudan a comunicar el mensaje de tu marca. Cada aspecto se considera cuidadosamente para garantizar que el packaging no solo sea atractivo, sino que también sea coherente con la identidad visual de tu marca.",
     ],
-    img:"public/images/servicio3.jpg",
+    img:"/images/servicio3.jpg",
     url:"/servicios",
     bgColor:"COLOR1",  
     bgNameColor:"COLOR2",
@@ -56,7 +56,7 @@ export const Servicios = [
         "Además de la creación de sitios web, también nos especializamos en el desarrollo de e-commerce. Creamos tiendas en línea personalizadas que permiten a tus clientes navegar, seleccionar y comprar productos de manera segura y conveniente. Nos aseguramos de que tu tienda esté optimizada para la conversión, utilizando estrategias de marketing digital para aumentar las ventas y mejorar la visibilidad en línea.",
         "Finalmente, nos enfocamos en el mantenimiento y soporte web continuo. Esto incluye la monitorización del rendimiento del sitio, actualizaciones de seguridad, y la implementación de mejoras basadas en el comportamiento del usuario. Queremos asegurarnos de que tu sitio web se mantenga en óptimas condiciones y siga cumpliendo su propósito a largo plazo."
     ],
-    img:"public/images/servicio4.jpg",
+    img:"/images/servicio4.jpg",
     url:"/servicios",
     bgColor:"orange-100",  
     bgNameColor:"COLOR2",
@@ -71,7 +71,7 @@ export const Servicios = [
         "La interacción con la comunidad es clave en el mundo digital. Nos encargamos de gestionar los comentarios y mensajes, asegurando que tus seguidores sientan que sus voces son escuchadas y valoradas. Esto no solo mejora la relación con tus clientes, sino que también genera una comunidad leal y activa en torno a tu marca.",
         "Finalmente, utilizamos herramientas de análisis para medir el rendimiento de nuestras estrategias en redes sociales. Proporcionamos informes detallados sobre el alcance, la interacción y el crecimiento de la audiencia, permitiéndote tomar decisiones informadas y ajustar tus estrategias según sea necesario. Con un enfoque basado en datos, garantizamos que tu presencia en redes sociales sea efectiva y esté alineada con tus objetivos comerciales."
     ],
-    img:"public/images/servicio5.jpg",
+    img:"/images/servicio5.jpg",
     url:"/servicios",
     bgColor:"COLOR2",  
     bgNameColor:"CBACKGROUND",

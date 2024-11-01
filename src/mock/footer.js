@@ -5,8 +5,8 @@ export const FooterText = {
     link1:"https://www.instagram.com/innovateproweb/",
     link2:"https://www.innovateproweb.com/contacto/",
     link3:"https://www.instagram.com/innovateproweb/",
-    imgLink1:"public/images/facebook.png",
-    imgLink2:"public/images/linkedin.png",
-    imgLink3:"public/images/twitter.png",
+    imgLink1:"/images/facebook.png",
+    imgLink2:"/images/linkedin.png",
+    imgLink3:"/images/twitter.png",
     text5:"© 2024 INNOVATEProweb. Todos los derechos reservados"
 }

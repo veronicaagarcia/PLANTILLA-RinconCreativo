@@ -1,13 +1,13 @@
 // Todo contenido personalizable/reemplazable. Desde el nombre en la pestalla del navedagor, como h1-h6, textos, etc de la VISTA HOME
 export const homeText = {
-    urlLogo:"public/LogoRinconCreativo.png",
+    urlLogo:"/LogoRinconCreativo.png",
     clientName: "Rincón Creativo",
-    imageContentSeo: "public/images/INNOVATEProwebSiteWeb.png",
+    imageContentSeo: "/images/INNOVATEProwebSiteWeb.png",
     metaTitle: "INNOVATEProweb | TEMPLATE 1 HOME",
     metaContent: "Confía en nosotros. Humanizamos la tecnología para que sea más accesible y cercana, ayudándote a establecer tu presencia en línea o impulsar el crecimiento de tu negocio en la web. Ya sea que necesites un sitio web, una tienda en línea, una aplicación personalizada que resuelva tus problemas, un rediseño de imagen, o la gestión de tus redes sociales, tenemos la solución que buscas.",
     homeTitleParte1: "Diseñando el futuro de las marcas,",
     homeTitleParte2: "dando vida a cada idea, un proyecto a la vez",
-    homeFirstImg: "public/images/HomeImg.jpg",
+    homeFirstImg: "/images/HomeImg.jpg",
     homeFirstTextP1: "Bienvenido a Rincón Creativo, donde tus ideas se visten de gala (o de lo que prefieras, no somos tan formales).",
     homeFirstTextP2:"Aquí no solo diseñamos, ¡damos vida a lo que imaginas! Desde logotipos que hacen girar cabezas, hasta diseños que hablan por sí mismos (y sin necesidad de megáfono).",
     homeFirstTextP3:"Si buscas una identidad visual única o simplemente algo que le dé un toque artístico a tu proyecto, ¡has llegado al lugar donde las ideas cobran vida y tienen buen gusto!",
