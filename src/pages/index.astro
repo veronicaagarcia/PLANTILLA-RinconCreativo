@@ -8,7 +8,6 @@ import Layout from '../layouts/Layout.astro'
 import { homeText } from '../mock/textViews/homeText'
 import { Servicios } from '../mock/servicios'
 import { Testimonios } from '../mock/testimonios'
-
 ---
 
 <Layout title={homeText.metaTitle} content={homeText.metaContent}>
@@ -19,7 +18,7 @@ import { Testimonios } from '../mock/testimonios'
 			<!-- Title animado -->
 			<div class="text-center w-full mx-auto">
 				<div class="h-fit flex items-center justify-center">
-					<h1 class="text-2xl md:text-4xl font-bold">
+					<h1 class="text-lg md:text-4xl font-bold">
 					  <span aria-hidden="true" class="block overflow-hidden">
 						<span class="inline-block animate-slide-right">
 						  <span class="text-gradient-right">{homeText.homeTitleParte1}</span>
@@ -41,12 +40,12 @@ import { Testimonios } from '../mock/testimonios'
 					<img 
 					  class="w-full h-full object-cover transition-opacity duration-300 ease-in-out"
 					  src={homeText.homeFirstImg} 
-					  alt={`Imagen inicio creatividad de`}
+					  alt={`Imagen inicio de ${homeText.clientName}`}
 					/>
-					<!-- alt={`Imagen inicio creatividad de ${LayoutText.clientName}`} -->
 					<img 
 					  class="w-full h-full object-contain absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out"
-					  src={homeText.homeSecondImg} 
+					  src={homeText.urlLogo} 
+					  alt={`Logo de ${homeText.clientName}`}
 					/>
 				  </div>
 				</figure>
@@ -59,7 +58,7 @@ import { Testimonios } from '../mock/testimonios'
 
 			<!-- Boton que te lleva al whatsapp con un mensaje ya definido o el que se quiera mandar -->
 			<WsapBtn newMessage={''} client:visible>  
-				<h3 class="my-4 md:my-8 xl:my-12 text-CBACKGROUND hover:cursor-pointer bg-COLOR1 hover:text-COLOR1 hover:bg-COLOR2 w-[230px] md:w-[250px] xl:w-[280px] h-[45px] md:h-[55px] xl:h-[65px] flex self-center text-center justify-center items-center m-auto rounded-xl">{homeText.TextFirstButton}</h3>
+				<h3 class="my-4 md:my-8 xl:my-12 text-CBACKGROUND hover:cursor-pointer bg-COLOR1 hover:bg-COLOR2 w-[230px] md:w-[250px] xl:w-[280px] h-[45px] md:h-[55px] xl:h-[65px] flex self-center text-center justify-center items-center m-auto rounded-xl">{homeText.TextFirstButton}</h3>
 			</WsapBtn>
 
 			<!-- Segunda seccion (Subtitulo y texto presentacion servicios ) -->
@@ -80,20 +79,15 @@ import { Testimonios } from '../mock/testimonios'
 					  bgNameColor={servicio.bgNameColor}  
 					  textColor={servicio.textColor}  
 					  textButton="" 
+					  description=""
 					  client:visible
 					/>
 				))}
 			</div>
 
-			<!-- Tercera seccion (card de nosotros y link a nosotros )-->
-			<Subtitle name={homeText.nosotrosName} bgColor='bg-COLOR1' textColor='COLOR3' client:visible/>
-			<Text text={homeText.nosotrosText} textColor='COLOR1' client:visible/>
-			<Button text={homeText.nosotrosTextButon} url={homeText.nosotrosUrl} client:visible/>
-			<br/>
-			  
 			<!-- Cuarta seccion (subtitulo, texto y cards testimonios) -->
 			<div class="mx-auto flex flex-col justify-center items-center mb-8 md:mb-12 xl:mb-20">
-			 <Subtitle name={homeText.testimoniosName} bgColor='bg-COLOR2' textColor='CBACKGROUND' client:visible/>
+			 <Subtitle name={homeText.testimoniosName} bgColor='bg-COLOR1' textColor='COLOR3' client:visible/>
 			 <Text text={homeText.testimoniosText} textColor='COLOR1' client:visible/>
 
 			 <div class="flex flex-wrap justify-center w-full gap-4 md:gap-6 xl:gap-8">
@@ -103,12 +97,13 @@ import { Testimonios } from '../mock/testimonios'
 					  key={index}  
 					  name={testimonio.name} 
 					  text={testimonio.text} 
-					  bgColor='COLOR1' 
-					  bgNameColor='COLOR2' 
-					  textColor='CBACKGROUND' 
+					  bgColor='CBACKGROUND' 
+					  bgNameColor='COLOR3' 
+					  textColor='COLOR1' 
 					  url='' 
 					  img='' 
 					  textButton="" 
+					  description=""
 					  client:visible
 					/>
 				))}
@@ -116,7 +111,7 @@ import { Testimonios } from '../mock/testimonios'
 			</div>
 
 			<!-- cierre con boton que lleva a contacto -->
-			<Subtitle name={homeText.contactoName} bgColor='bg-COLOR1' textColor='COLOR2' client:visible/>
+			<Subtitle name={homeText.contactoName} bgColor='bg-COLOR3' textColor='COLOR1' client:visible/>
 			<Text text={homeText.contactoText} textColor='COLOR1' client:visible/>
 			<Button text={homeText.contactoButtonText} url={homeText.contactoURL} client:visible/>
 		 </section>
@@ -140,17 +135,14 @@ import { Testimonios } from '../mock/testimonios'
   
 	.animate-slide-left {
 	  animation: slideLeft 2s ease-out forwards;
-	  animation-delay: 0.5s;
 	}
   
 	.text-gradient-right {
 	  @apply bg-clip-text text-transparent bg-gradient-to-r from-COLOR1 to-COLOR2;
-	  filter: drop-shadow(0 0 3em rgba(142, 250, 96, 0.5));
 	}
   
 	.text-gradient-left {
 	  @apply bg-clip-text text-transparent bg-gradient-to-l from-COLOR1 to-COLOR2;
-	  filter: drop-shadow(0 0 3em rgba(142, 250, 96, 0.5));
 	}
 
 </style>

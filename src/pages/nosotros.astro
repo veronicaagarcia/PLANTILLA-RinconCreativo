@@ -27,14 +27,15 @@ const mvvContent = [
 
 			<!-- Primera seccion (subtitulo y tres imagenes superpuestas) -->
 			<Subtitle name={nosotrosText.Subtitle1} bgColor='bg-COLOR3' textColor='CBACKGROUND' client:visible />
-			<figure class="w-full mt-8">
+
+			<figure class="w-full md:w-10/12 mt-8 rounded-xl">
 				<div class="relative w-full h-64 sm:h-80 md:h-96 lg:h-112 xl:h-128 overflow-hidden">
 				  {nosotrosImages.map((image, index) => (
 					<div 
 					  class={`absolute top-0 left-0 w-4/5 h-full transition-transform duration-300 ease-in-out transform hover:scale-105 hover:z-10 ${
-						index === 0 ? 'z-30' : 
-						index === 1 ? 'z-20 translate-x-[20%]' : 
-						'z-10 translate-x-[40%]'
+						index === 0 ? 'z-30 translate-x-[-20%]'  : 
+						index === 1 ? 'z-20 translate-x-[10%]' : 
+						'z-10 translate-x-[30%]'
 					  }`}
 					>
 					  <img 
@@ -71,8 +72,8 @@ const mvvContent = [
 			<!-- Nuestro equipo -->
 			<Subtitle name={nosotrosText.Subtitle4} bgColor='bg-COLOR2' textColor='CBACKGROUND' client:visible />
 			<Text text={nosotrosText.text2} textColor='COLOR1' client:visible/>
-			<div class="w-full mt-12">
-				<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+			<div class="w-full md:w-10/12 mt-12">
+				<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 				  {Team.map((member) => (
 					<div class="flip-card bg-transparent w-full h-64">
 					  <div class="flip-card-inner relative w-full h-full transition-transform duration-700 transform-style-preserve-3d">
@@ -92,6 +93,8 @@ const mvvContent = [
 				  ))}
 				</div>
 			</div>
+
+			<Text text={nosotrosText.text3} textColor='COLOR1' client:visible/>
 
         </section>
     </main>

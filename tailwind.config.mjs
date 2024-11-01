@@ -10,8 +10,8 @@ export default {
 				CBACKGROUND: "#F4F5F7"
 			},
 			fontFamily: {
-        		heading: ['Patrick Hand', 'cursive'], // Fuente para los H1 y H2
-				sans: ['Overpass', 'sans-serif'],  // Fuente principal para el texto
+        		heading: ['Bebas Neue', 'sans-serif'], // Fuente para los H1 y H2
+				sans: ['Source Sans Pro', 'sans-serif'],  // Fuente principal para el texto
 			},
 			screens: {
 				s: "470px", // Definir el nuevo breakpoint 's' a partir de 470px

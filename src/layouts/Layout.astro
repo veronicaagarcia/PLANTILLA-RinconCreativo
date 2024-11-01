@@ -18,6 +18,8 @@ const { title, content } = Astro.props
 			<meta name="generator" content={Astro.generator} />
 			<meta name="description" content={content} />
 			<title>{title}</title>
+			<!-- Enlace fuentes -->
+			<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
 			<!-- etiquetas para mejorar SEO organico - optimizan para ser compartidas en redes  -->
 			<meta property="og:title" content={title} />
 			<meta property="og:description" content={content} />
@@ -29,7 +31,7 @@ const { title, content } = Astro.props
 			<meta name="twitter:description" content={content} />
 			<meta name="twitter:image" content={homeText.imageContentSeo} />
 	</head>
-	<body class="bg-CBACKGROUND font-sans overflow-y-scroll font-semibold text-sm md:text-[15px] xl:text-base">
+	<body class="bg-CBACKGROUND font-sans overflow-y-scroll font-semibold text-sm md:text-base xl:text-lg">
 		<Navbar client:load />
 		<slot />
 	</body>

@@ -2,7 +2,9 @@
 import Subtitle from '../components/Subtitle'
 import Text from '../components/Text'
 import Layout from '../layouts/Layout.astro'
+import Card from '../components/Card'
 import { serviciosText } from '../mock/textViews/serviciosText'
+import { Servicios as servicios } from '../mock/servicios'
 
 ---
 
@@ -10,9 +12,33 @@ import { serviciosText } from '../mock/textViews/serviciosText'
 	<main>
 		<section class="w-full mx-auto px-4 py-8 md:w-11/12 xl:w-10/12 border-2 border-t-0 border-b-0 border-dashed md:border-3 md:border-y-0 border-COLOR1 flex flex-col justify-center items-center">
 
-			<!-- Primera seccion (subtitulo) -->
+			<!-- Primera seccion (subtitulo y texto) -->
 			<Subtitle name={serviciosText.Subtitle1} bgColor='bg-COLOR3' textColor='CBACKGROUND' client:visible />
             <Text text={serviciosText.text1} textColor='COLOR1' client:visible/>
+
+			<!-- detalle de cada servicio, uno bajo al otro -->
+			<div class="flex flex-col items-center justify-center w-full gap-4 md:gap-6 ">
+
+				{servicios.map((servicio, index) => (
+					<Card 
+					  key={index} 
+					  fullWidth={true} 
+					  name={servicio.name} 
+					  text={servicio.text} 
+					  description={servicio.description}
+					  img={servicio.img} 
+					  url='' 
+					  bgColor={servicio.bgColor} 
+					  bgNameColor={servicio.bgNameColor}  
+					  textColor={servicio.textColor}  
+					  textButton="" 
+					  client:visible
+					/>
+				))}
+			</div>
+
+			<!-- texto final -->
+			<Text text={serviciosText.text2} textColor='COLOR1' client:visible/>
         </section>
     </main>
 </Layout>

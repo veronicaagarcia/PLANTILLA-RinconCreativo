@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro'
+import { proyectosText } from '../mock/textViews/proyectosText'
+import Subtitle from '../components/Subtitle'
+import Text from '../components/Text'
+import { Proyectos as Proyectosdestacados } from '../mock/proyectos'
+import Button from '../components/Button'
+---
+
+<Layout title={proyectosText.metaTitle} content={proyectosText.metaContent}>
+	<main>
+		<section class="w-full mx-auto px-4 py-8 md:w-11/12 xl:w-10/12 border-2 border-t-0 border-b-0 border-dashed md:border-3 md:border-y-0 border-COLOR1 flex flex-col justify-center items-center">
+
+			<!-- Subtitulo y texto -->
+			<Subtitle name={proyectosText.Subtitle1} bgColor='bg-COLOR3' textColor='CBACKGROUND' client:visible />
+            <Text text={proyectosText.text1} textColor='COLOR1' client:visible/>
+
+            <!-- Proyectos -->
+            <div class="w-full md:w-10/12 mt-12">
+				<div class="grid grid-cols-1 md:grid-cols-2  gap-6 mt-8">
+					{Proyectosdestacados.map((item) => (
+						<div class="bg-COLOR1 hover:bg-CBACKGROUND text-CBACKGROUND hover:text-COLOR1 rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105">
+							<div class="p-6">
+                                <h3 class={`text-${item.textColor} bg-${item.bgNameColor} text-sm text-center animate-slideUp md:text-base xl:text-lg w-fit mx-auto rounded-sm px-1 md:px-2 xl:px-3 mb-2 md:mb-4 xl:mb-6`}>{item.name}</h3>
+								<p>{item.text}</p>
+                                <figure class="overflow-hidden h-[240px] my-2 md:h-[280px] rounded-xl z-10">
+                                    <img class="grayscale hover:grayscale-0 transition duration-300 ease-in-out bg-center object-cover w-full h-full" src={item.img} alt={`Imagen de ${item.name}`} />
+                                </figure>
+                                <p class="font-extralight text-xs md:text-sm xl:text-base leading-snug">{item.description}</p>
+								<div class="flex items-center justify-center">
+                                    <Button text='Ver más' url={item.url} client:visible />
+								</div>
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+
+            <!-- texto final -->
+            <Text text={proyectosText.text2} textColor='COLOR1' client:visible/>
+        </section>
+    </main>
+</Layout>

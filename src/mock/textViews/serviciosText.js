@@ -2,6 +2,7 @@
 export const serviciosText = {
     metaTitle: "INNOVATEProweb | SERVICIOS",
     metaContent: "Confía en nosotros. Humanizamos la tecnología para que sea más accesible y cercana, ayudándote a establecer tu presencia en línea o impulsar el crecimiento de tu negocio en la web. Ya sea que necesites un sitio web, una tienda en línea, una aplicación personalizada que resuelva tus problemas, un rediseño de imagen, o la gestión de tus redes sociales, tenemos la solución que buscas.",
-    Subtitle1: "Nuestros Servicios",
-    text1:"En Rincón Creativo, ofrecemos soluciones de diseño integrales para hacer brillar tu marca en todos los aspectos.",
+    Subtitle1: "Explora Nuestras Soluciones Creativas Más Demandadas",
+    text1:"En Rincón Creativo, nos dedicamos a ofrecer soluciones de diseño integrales, concebidas para hacer brillar tu marca en cada aspecto y en cada detalle. Ya sea a través de una identidad visual impactante, un sitio web funcional y atractivo o estrategias visuales para redes sociales, nuestro equipo se enfoca en llevar tu marca al siguiente nivel. Creemos en el poder del diseño como una herramienta para conectar, inspirar y dejar una huella memorable en tu audiencia.",
+    text2:"Estamos comprometidos con el éxito de cada proyecto, y cada uno de nuestros servicios refleja nuestra pasión por el diseño y el impacto positivo que genera. Permítenos ayudarte a transformar tu marca en una experiencia visual que cautive y fidelice a tus clientes. En Rincón Creativo, nos enorgullece ver cada idea cobrar vida de manera única. ¡Explora nuestras soluciones y descubre cómo podemos trabajar juntos para hacer de tu marca algo inolvidable!"
 }

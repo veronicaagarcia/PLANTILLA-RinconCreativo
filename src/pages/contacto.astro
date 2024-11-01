@@ -1,0 +1,38 @@
+---
+import { FormContacto } from '../components/FormContacto'
+import Subtitle from '../components/Subtitle'
+import Text from '../components/Text'
+import WsapBtn from '../components/WsapBtn'
+import Layout from '../layouts/Layout.astro'
+import { FooterText } from '../mock/footer'
+import { contactoText } from '../mock/textViews/contactoText'
+
+---
+
+<Layout title={contactoText.metaTitle} content={contactoText.metaContent}>
+	<main>
+		<section class="w-full mx-auto px-4 py-8 md:w-11/12 xl:w-10/12 border-2 border-t-0 border-b-0 border-dashed md:border-3 md:border-y-0 border-COLOR1 flex flex-col justify-center items-center">
+
+			<!-- Primera seccion (subtitulo y texto) -->
+			<Subtitle name={contactoText.Subtitle1} bgColor='bg-COLOR3' textColor='CBACKGROUND' client:visible />
+            <Text text={contactoText.text1} textColor='COLOR1' client:visible/>
+
+            <!-- Formulario de contacto -->
+             <FormContacto client:visible />
+
+            <!-- Otros Contactos (email, telefono, redsocial) -->
+            <Subtitle name={contactoText.Subtitle2} bgColor='bg-COLOR2' textColor='CBACKGROUND' client:visible />
+            <div class="flex flex-col mb-5 w-fit gap-2 md:gap-3 lg:gap-6 xl:gap-12 tracking-wider items-center text-sm font-sans text-BACKGROUND md:flex md:flex-row md:items-end md:h-full md:my-auto md:text-[15px] xl:text-base mt-4 md:mt-8 xl:mt-12">
+                <a class="hover:text-COLOR2" href=`mailto:${FooterText.email}?subject=Interesado%20en%20más%20información&body=Hola,%20estoy%20interesado%20en%20conocer%20más%20información%20sobre%20sus%20servicios.%20¿Podrían%20por%20favor%20enviarme%20más%20detalles?` >
+                    <p>{FooterText.email}</p>
+                </a>
+                <WsapBtn newMessage={''} client:visible>  
+                    <h3 class=" text-COLOR1 hover:cursor-pointer hover:text-COLOR2">{contactoText.WhatsApp}</h3>
+                </WsapBtn>
+                <a class="hover:text-COLOR2" target="_blank" href={FooterText.link1} >
+                    <p>{contactoText.redsocial}</p>
+                </a>
+              </div>
+        </section>
+    </main>
+</Layout>

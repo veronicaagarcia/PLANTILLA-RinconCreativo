@@ -26,7 +26,7 @@ const Subtitle = ({ name, bgColor, textColor }) => {
           px-1 md:px-2 xl:px-3 mt-4 md:mt-8 xl:mt-12 
         `}
         style={{
-          clipPath: 'polygon(0% 15%, 15% 0%, 85% 0%, 100% 15%, 100% 85%, 85% 100%, 15% 100%, 0% 85%)',
+          clipPath: 'polygon(0% 5%, 5% 0%, 85% 0%, 100% 5%, 100% 85%, 85% 100%, 15% 100%, 0% 85%)',
         }}
       >
         {name}
@@ -45,7 +45,7 @@ const Subtitle = ({ name, bgColor, textColor }) => {
         />
       </svg>
       <style jsx>{`
-        .path-animation {
+          .path-animation {
           stroke-dasharray: 400;
           stroke-dashoffset: 400;
           animation: draw 2s forwards, wiggle 3s ease-in-out infinite;
