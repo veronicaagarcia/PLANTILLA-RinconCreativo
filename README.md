@@ -34,6 +34,8 @@ Los estilos están gestionados con Tailwind CSS. Puedes modificar las clases dir
 
 🖼️ Imágenes y recursos
 Reemplaza los recursos en el directorio public para personalizar imágenes, logotipos y otros medios.
+Al momento de cambiarse las imágenes recomendamos que se les ponga el mismo nombre que la imágen que se reemplaza logrando asi un resultado con menos complicaciones. Es decir proyecto1.png  que se cambie por la foto que quiera mostrar, pero que se le de el mismo nombre.
+Si se pretende un trabajo más profesional, una vez que todo este funcionando, volver a cambiar el nombre de la imágen por algo muy descriptivo para ayudar al SEO orgánico. EJEMPLO : img-proyectoweb-plantilla-innovateproweb.png
 
 🛠️ Tecnologías Utilizadas
 🌐 Astro: Framework moderno para construir sitios web estáticos y altamente eficientes.
@@ -41,6 +43,9 @@ Reemplaza los recursos en el directorio public para personalizar imágenes, logo
 ⚙️ JavaScript (opcional): Para agregar interactividad y lógica personalizada.
 📄 Licencia
 Este proyecto está bajo la licencia MIT. Puedes ver los detalles en el archivo LICENSE.
+
+👷🏻‍♀️Cómo funciona
+El mock "homeText.js" es el que tiene la informacion principal que se renderiza en el archivo "Layout.astro" este archivo es el punto de entrada por donde se inyectan el resto de las páginas. Cada página tiene su mock particular. Los mocks tienen no solo contenido visual, sino tambien la METADATA de content y title, al cambiarlo, entender que es importante usar palabras clave para optimizar SEO.
 
 🤝 Contribuciones
 Las contribuciones son bienvenidas. Si deseas mejorar esta plantilla o agregar nuevas características, sigue estos pasos:

@@ -71,6 +71,7 @@ import { Testimonios } from '../mock/testimonios'
 				{Servicios.map((servicio, index) => (
 					<Card 
 					  key={index}  
+					  id={servicio.id}
 					  name={servicio.name} 
 					  text={servicio.text} 
 					  img={servicio.img} 
@@ -94,6 +95,7 @@ import { Testimonios } from '../mock/testimonios'
 
 				{Testimonios.map((testimonio, index) => (
 					<Card 
+					id=""
 					  key={index}  
 					  name={testimonio.name} 
 					  text={testimonio.text} 

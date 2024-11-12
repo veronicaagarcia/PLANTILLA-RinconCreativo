@@ -1,7 +1,7 @@
 export const FooterText = {
     email:"info@innovateproweb.com",
     tel:"+59 8960 33191",
-    text4:"Calle falsa 123",
+    text4:"Av. Uruguay y Libertador 1200",
     link1:"https://www.instagram.com/innovateproweb/",
     link2:"https://www.innovateproweb.com/contacto/",
     link3:"https://www.instagram.com/innovateproweb/",

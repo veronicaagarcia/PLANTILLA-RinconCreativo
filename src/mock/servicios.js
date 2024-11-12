@@ -1,5 +1,6 @@
 export const Servicios = [
     {
+    id: "identidad-visual",
     name:"Identidad Visual",
     text:"Creamos desde cero la imagen de tu marca, asegurándonos de que cada color, forma y tipografía hablen de quién eres.",
     description:[
@@ -16,6 +17,7 @@ export const Servicios = [
     bgNameColor:"COLOR2",
     textColor:"COLOR1"  },
     {
+    id: "diseño-grafico",
     name:"Diseño Gráfico",
     text:"Desde carteles hasta flyers, damos vida a tus mensajes con diseños que atrapan la atención y cuentan tu historia.",
     description:[
@@ -32,6 +34,7 @@ export const Servicios = [
     bgNameColor:"CBACKGROUND",
     textColor:"COLOR1"},
     {
+    id: "diseño-packaging",
     name:"Diseño de Packaging",
     text:"Hacemos que tu producto brille desde el estante con diseños innovadores y atractivos que impulsan las ventas.",
     description:[
@@ -47,6 +50,7 @@ export const Servicios = [
     bgNameColor:"COLOR2",
     textColor:"CBACKGROUND"},
     {
+    id: "diseño-web",
     name:"Diseño Web",
     text:"Crea una presencia online impactante con sitios web intuitivos, estéticamente cautivadores y 100% funcionales.",
     description:[
@@ -62,6 +66,7 @@ export const Servicios = [
     bgNameColor:"COLOR2",
     textColor:"COLOR1"},
     {
+    id: "redes-sociales",
     name:"Redes Sociales",
     text:"Dale a tus publicaciones ese toque especial con contenido visual diseñado para destacar y generar interacción.",
     description:[

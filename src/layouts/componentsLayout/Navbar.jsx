@@ -20,10 +20,11 @@ export default function Navbar() {
         <LogoComponent className="size-11 md:hidden" client:visible />
 
         {/* Nombre */}
-        <h2 className={`font-bold text-CBACKGROUND justify-center items-center font-heading text-xl s:text-xl lg:text-3xl `}>
+        <a href="/" ><h2 className={`font-bold text-CBACKGROUND justify-center items-center font-heading text-xl s:text-xl lg:text-3xl `}>
           {homeText.clientName}
         </h2>
-
+        </a>
+        
         {/* barra de navegacion */}
         <nav className={`${menuToggle ? "flex" : "hidden"}
           flex-col mb-5 w-fit gap-2 tracking-wider items-center text-sm font-sans text-CBACKGROUND md:flex md:flex-row md:items-end md:h-full md:my-auto md:text-base xl:text-lg`}>

@@ -1,6 +1,6 @@
 import Button from "./Button";
 
-const Card = ({ key, name, text, img, url, bgColor, bgNameColor, textColor, textButton, description , fullWidth = false}) => {
+const Card = ({ key, name, text, img, id, url, bgColor, bgNameColor, textColor, textButton, description , fullWidth = false}) => {
 
     const cardWidth = fullWidth 
         ? 'w-9/12' 
@@ -26,7 +26,7 @@ const Card = ({ key, name, text, img, url, bgColor, bgNameColor, textColor, text
             {img && 
             <div className="w-full relative">
                 {!fullWidth && 
-                <a className={`text-${textColor} hover:text-${bgNameColor} bg-COLOR3 absolute bottom-0 left-2 items-center self-center text-center rounded-full px-2 py-1 md:px-4 md:py-2 xl:py-3 mb-2 md:mb-4 xl:mb-6 z-50`} href={url}>
+                <a className={`text-${textColor} hover:text-${bgNameColor} bg-COLOR3 absolute bottom-0 left-2 items-center self-center text-center rounded-full px-2 py-1 md:px-4 md:py-2 xl:py-3 mb-2 md:mb-4 xl:mb-6 z-50`} href={`${url}#${id}`}>
                     ➜
                 </a>
                 }

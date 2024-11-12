@@ -17,10 +17,12 @@ import { Servicios as servicios } from '../mock/servicios'
             <Text text={serviciosText.text1} textColor='COLOR1' client:visible/>
 
 			<!-- detalle de cada servicio, uno bajo al otro -->
-			<div class="flex flex-col items-center justify-center w-full gap-4 md:gap-6 ">
+			<div class="flex flex-col items-center justify-center w-full gap-5 md:gap-8 mx-auto self-center">
 
 				{servicios.map((servicio, index) => (
+					<section id={servicio.id} class="flex items-center justify-center self-center mx-auto">
 					<Card 
+					id={servicio.id}
 					  key={index} 
 					  fullWidth={true} 
 					  name={servicio.name} 
@@ -34,6 +36,7 @@ import { Servicios as servicios } from '../mock/servicios'
 					  textButton="" 
 					  client:visible
 					/>
+					</section>
 				))}
 			</div>
 
