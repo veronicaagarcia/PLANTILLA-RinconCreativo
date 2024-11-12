@@ -4,6 +4,8 @@ Este proyecto es una plantilla web diseñada por INNOVATEProweb para mostrar a p
 ✨ Descripción
 Esta plantilla es un ejemplo visual y funcional de cómo INNOVATEProweb puede ayudar a los negocios a establecer su presencia en línea de forma rápida y profesional. Además de ser una demo para clientes potenciales, está diseñada para facilitar la creación de sitios personalizados con agilidad y eficiencia.
 
+🔗 Link: https://innovateprowebplantilla1.netlify.app/
+
 🔑 Características principales
 🎨 Diseño moderno y profesional: Creada con un enfoque en la innovación y la humanización, reflejando los valores de INNOVATEProweb.
 ⚡ Tecnologías utilizadas: Astro y Tailwind CSS para un desarrollo rápido, eficiente y de alto rendimiento.
