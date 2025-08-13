@@ -1,0 +1,51 @@
+{
+  "name": "Hermes - Diseño Creativo",
+  "short_name": "Hermes",
+  "description": "Estudio de diseño creativo especializado en identidad visual, diseño gráfico y desarrollo web",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1A1E2E",
+  "theme_color": "#1A1E2E",
+  "orientation": "portrait-primary",
+  "categories": ["design", "creative", "business"],
+  "lang": "es",
+  "icons": [
+    {
+      "src": "/LogoRinconCreativo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/LogoRinconCreativo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Servicios",
+      "url": "/servicios",
+      "description": "Ver nuestros servicios de diseño"
+    },
+    {
+      "name": "Proyectos",
+      "url": "/proyectos", 
+      "description": "Explorar nuestro portafolio"
+    },
+    {
+      "name": "Contacto",
+      "url": "/contacto",
+      "description": "Contáctanos para tu proyecto"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/images/HermesSiteWeb.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ]
+}

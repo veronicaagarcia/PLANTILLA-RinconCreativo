@@ -10,35 +10,69 @@ export default function Navbar() {
   const [menuToggle, setMenuToggle] = useState(false);
 
   return (
-    <header className="z-10 w-full">
-      <section className={`w-full z-10 h-fit p-2 md:p-6 xl:p-8 shadow-lg bg-COLOR1 text-CBACKGROUND flex justify-between items-center ${
-        !menuToggle
-        ? "h-16 justify-around"
-        : "h-[70vh] flex-col"}`}>
+    <header className="sticky top-0 z-50 w-full backdrop-blur-md bg-COLOR1/95 border-b border-COLOR1/10 shadow-lg">
+      <section className={`
+        w-full max-w-7xl mx-auto px-4 md:px-6 xl:px-8 py-3 md:py-4
+        flex justify-between items-center
+        transition-all duration-500 ease-in-out
+        ${!menuToggle ? "h-16 md:h-20" : "h-screen md:h-20 flex-col md:flex-row"}
+      `}>
     
-        {/*LOGO CLIENT  */}
-        <LogoComponent className="size-11 md:hidden" client:visible />
-
-        {/* Nombre */}
-        <a href="/" ><h2 className={`font-bold text-CBACKGROUND justify-center items-center font-heading text-xl s:text-xl lg:text-3xl `}>
-          {homeText.clientName}
-        </h2>
-        </a>
+        {/* Logo y Nombre */}
+        <div className="flex items-center gap-3 md:gap-4">
+          <LogoComponent className="size-10 md:size-12 animate-float" />
+          <a 
+            href="/" 
+            className="group flex items-center"
+            aria-label={`Ir a inicio - ${homeText.clientName}`}
+          >
+            <h1 className={`
+              font-bold text-CBACKGROUND font-heading 
+              text-lg s:text-xl md:text-2xl lg:text-3xl xl:text-4xl
+              group-hover:text-COLOR3-dark transition-colors duration-300
+              tracking-wide
+            `}>
+              {homeText.clientName}
+            </h1>
+          </a>
+        </div>
         
-        {/* barra de navegacion */}
-        <nav className={`${menuToggle ? "flex" : "hidden"}
-          flex-col mb-5 w-fit gap-2 tracking-wider items-center text-sm font-sans text-CBACKGROUND md:flex md:flex-row md:items-end md:h-full md:my-auto md:text-base xl:text-lg`}>
-          <Nav client:load/>
+        {/* Navegación */}
+        <nav 
+          className={`
+            ${menuToggle ? "flex animate-fadeInLeft" : "hidden md:flex"}
+            flex-col md:flex-row gap-6 md:gap-8 lg:gap-10
+            items-center text-center
+            text-sm md:text-base lg:text-lg
+            font-medium tracking-wide
+            ${menuToggle ? "mt-16 md:mt-0" : ""}
+          `}
+          role="navigation"
+          aria-label="Navegación principal"
+        >
+          <Nav />
         </nav>
         
-        {/* SECCION DE BOTON  */}
-        <figure className="size-9 flex justify-center items-center bg-COLOR1 rounded-xl hover:cursor-pointer md:hidden shadow-sm shadow-COLOR2 hover:shadow-COLOR3" onClick={() => setMenuToggle(!menuToggle)}>
+        {/* Botón de menú móvil */}
+        <button 
+          className={`
+            w-10 h-10 md:hidden flex justify-center items-center 
+            bg-COLOR2 hover:bg-COLOR3 rounded-lg
+            transition-all duration-300 transform hover:scale-110
+            shadow-md hover:shadow-lg
+            focus:outline-none focus:ring-2 focus:ring-COLOR3-dark focus:ring-offset-2
+          `}
+          onClick={() => setMenuToggle(!menuToggle)}
+          aria-label={menuToggle ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={menuToggle}
+        >
+          <span className="sr-only">{menuToggle ? "Cerrar menú" : "Abrir menú"}</span>
           {!menuToggle ? (
-            <MenuClose className="text-CBACKGROUND" />
+            <MenuOpen className="text-CBACKGROUND w-5 h-5 transition-transform duration-300" />
           ) : (
-            <MenuOpen className="text-CBACKGROUND" />
+            <MenuClose className="text-CBACKGROUND w-5 h-5 transition-transform duration-300" />
           )}
-        </figure> 
+        </button> 
       </section>
     </header>
   );

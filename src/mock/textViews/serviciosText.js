@@ -1,6 +1,6 @@
 // Todo contenido personalizable/reemplazable. Desde el nombre en la pestalla del navedagor, como h1-h6, textos, etc de la VISTA SERVICIOS
 export const serviciosText = {
-    metaTitle: "INNOVATEProweb | SERVICIOS",
+    metaTitle: "Hermes | SERVICIOS",
     metaContent: "Confía en nosotros. Humanizamos la tecnología para que sea más accesible y cercana, ayudándote a establecer tu presencia en línea o impulsar el crecimiento de tu negocio en la web. Ya sea que necesites un sitio web, una tienda en línea, una aplicación personalizada que resuelva tus problemas, un rediseño de imagen, o la gestión de tus redes sociales, tenemos la solución que buscas.",
     Subtitle1: "Explora Nuestras Soluciones Creativas Más Demandadas",
     text1:"En Rincón Creativo, nos dedicamos a ofrecer soluciones de diseño integrales, concebidas para hacer brillar tu marca en cada aspecto y en cada detalle. Ya sea a través de una identidad visual impactante, un sitio web funcional y atractivo o estrategias visuales para redes sociales, nuestro equipo se enfoca en llevar tu marca al siguiente nivel. Creemos en el poder del diseño como una herramienta para conectar, inspirar y dejar una huella memorable en tu audiencia.",

@@ -8,7 +8,7 @@ export const Proyectos = [
             " Además, se implementó una versión digital de la revista para aumentar su alcance y facilitar el acceso a la comunidad. Se trabajó en la creación de contenido adicional en redes sociales para promover cada nueva edición y fomentar la interacción con los lectores."
         ],
         img: "/images/proyecto1.jpg",
-        url: "https://www.innovateproweb.com/",
+        url: "https://www.hermes.website/",
         bgNameColor: "COLOR2",
         textColor: "COLOR1"
     },
@@ -21,7 +21,7 @@ export const Proyectos = [
             " La campaña se lanzó en varias plataformas, incluyendo eventos comunitarios y redes sociales, con el objetivo de movilizar a los ciudadanos hacia acciones concretas que beneficien al medio ambiente."
         ],
         img: "/images/proyecto2.jpg",
-        url: "https://www.innovateproweb.com/",
+        url: "https://www.hermes.website/",
         bgNameColor: "CBACKGROUND",
         textColor: "COLOR1"
     },
@@ -34,7 +34,7 @@ export const Proyectos = [
             " Además, se diseñaron materiales de marketing como folletos y publicaciones para redes sociales, asegurando que la marca tuviese una presencia fuerte y coherente en todos los puntos de contacto con el cliente."
         ],
         img: "/images/proyecto3.jpg",
-        url: "https://www.innovateproweb.com/",
+        url: "https://www.hermes.website/",
         bgNameColor: "COLOR3",
         textColor: "COLOR1"
     },
@@ -47,7 +47,7 @@ export const Proyectos = [
             " El diseño se centró en resaltar la calidad de los productos, utilizando imágenes atractivas y una paleta de colores que evocara la frescura y naturalidad de los mismos."
         ],
         img: "/images/proyecto4.jpg",
-        url: "https://www.innovateproweb.com/",
+        url: "https://www.hermes.website/",
         bgNameColor: "COLOR2",
         textColor: "COLOR1"
     },
@@ -60,7 +60,7 @@ export const Proyectos = [
             " Además, se estableció una exposición al final del taller para mostrar las obras de arte de los niños, promoviendo así la confianza y el orgullo en su trabajo artístico."
         ],
         img: "/images/proyecto5.jpg",
-        url: "https://www.innovateproweb.com/",
+        url: "https://www.hermes.website/",
         bgNameColor: "CBACKGROUND",
         textColor: "COLOR1"
     }

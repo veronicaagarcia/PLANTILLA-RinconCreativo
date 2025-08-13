@@ -1,0 +1,51 @@
+---
+export interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+
+// Generate structured data for breadcrumbs
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": items.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.name,
+    "item": `https://hermesplantilla1.netlify.app${item.url}`
+  }))
+};
+---
+
+<nav aria-label="Breadcrumb" class="mb-6 md:mb-8">
+  <ol class="flex items-center space-x-2 text-sm md:text-base text-COLOR1">
+    {items.map((item, index) => (
+      <li class="flex items-center">
+        {index > 0 && (
+          <svg class="w-4 h-4 mx-2 text-COLOR1/60" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+          </svg>
+        )}
+        {index === items.length - 1 ? (
+          <span class="font-medium text-COLOR2-dark" aria-current="page">{item.name}</span>
+        ) : (
+          <a 
+            href={item.url} 
+            class="hover:text-COLOR2-dark transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-COLOR2-dark focus:ring-offset-2 rounded"
+          >
+            {item.name}
+          </a>
+        )}
+      </li>
+    ))}
+  </ol>
+
+  <!-- Structured Data for Breadcrumbs -->
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)}></script>
+</nav>

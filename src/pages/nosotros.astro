@@ -4,6 +4,7 @@ import { nosotrosText } from '../mock/textViews/nosotrosText'
 import { homeText } from '../mock/textViews/homeText'
 import Subtitle from '../components/Subtitle'
 import Text from '../components/Text'
+import Breadcrumb from '../components/Breadcrumb.astro'
 import { Team } from '../mock/team'
 
 // Definir las imágenes para el componente de imágenes superpuestas
@@ -11,6 +12,31 @@ const nosotrosImages = [
   { src: "/images/nosotros1.jpg", alt: `Imagen de ${homeText.clientName}` },
   { src: "/images/nosotros2.jpg", alt: `Imagen de ${homeText.clientName}` },
   { src: "/images/nosotros3.jpg", alt: `Imagen de ${homeText.clientName}` },
+];
+
+// Generate structured data for team
+const teamSchema = {
+	"@context": "https://schema.org",
+	"@type": "Organization",
+	"name": "Rincón Creativo",
+	"description": "Equipo creativo especializado en diseño e innovación",
+	"employee": Team.map((member) => ({
+		"@type": "Person",
+		"name": member.name,
+		"jobTitle": member.role,
+		"description": member.description,
+		"image": `https://hermesplantilla1.netlify.app${member.image}`,
+		"worksFor": {
+			"@type": "Organization",
+			"name": "Rincón Creativo"
+		}
+	}))
+};
+
+// Breadcrumb items
+const breadcrumbItems = [
+	{ name: "Inicio", url: "/" },
+	{ name: "Nosotros", url: "/nosotros" }
 ];
 
 // Definir el contenido para misión, visión y valores
@@ -25,28 +51,80 @@ const mvvContent = [
 	<main>
 		<section class="w-full mx-auto px-4 py-8 md:w-11/12 xl:w-10/12 border-2 border-t-0 border-b-0 border-dashed md:border-3 md:border-y-0 border-COLOR1 flex flex-col justify-center items-center">
 
+			<!-- Breadcrumb Navigation -->
+			<div class="w-full mb-6">
+				<Breadcrumb items={breadcrumbItems} />
+			</div>
+
 			<!-- Primera seccion (subtitulo y tres imagenes superpuestas) -->
 			<Subtitle name={nosotrosText.Subtitle1} bgColor='bg-COLOR3' textColor='CBACKGROUND' client:visible />
 
-			<figure class="w-full md:w-10/12 mt-8 rounded-xl">
-				<div class="relative w-full h-64 sm:h-80 md:h-96 lg:h-112 xl:h-128 overflow-hidden">
-				  {nosotrosImages.map((image, index) => (
-					<div 
-					  class={`absolute top-0 left-0 w-4/5 h-full transition-transform duration-300 ease-in-out transform hover:scale-105 hover:z-10 ${
-						index === 0 ? 'z-30 translate-x-[-20%]'  : 
-						index === 1 ? 'z-20 translate-x-[10%]' : 
-						'z-10 translate-x-[30%]'
-					  }`}
-					>
-					  <img 
-						src={image.src} 
-						alt={image.alt} 
-						class="w-full h-full object-cover rounded-lg shadow-lg"
-					  />
+			<!-- Galería de imágenes interactiva -->
+			<div class="w-full md:w-10/12 mt-8">
+				<!-- Imagen principal -->
+				<div class="relative mb-6">
+					<div class="main-image-container relative w-full h-80 md:h-96 lg:h-112 rounded-2xl overflow-hidden shadow-2xl group cursor-pointer">
+						<img 
+							id="mainImage"
+							src="/images/nosotros1.jpg" 
+							alt="Imagen principal de Hermes" 
+							class="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
+						/>
+						<div class="absolute inset-0 bg-gradient-to-t from-COLOR1/40 via-transparent to-transparent"></div>
+						<div class="absolute bottom-4 left-4 right-4">
+							<div class="bg-white/90 backdrop-blur-md rounded-xl px-4 py-3 shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-all duration-500 border border-white/20">
+								<h3 id="imageTitle" class="text-COLOR1 text-base md:text-lg font-bold mb-1">Nuestro Espacio de Trabajo</h3>
+								<p id="imageDescription" class="text-COLOR1/80 text-xs md:text-sm leading-tight">Un ambiente creativo donde nacen las mejores ideas y proyectos innovadores.</p>
+							</div>
+						</div>
 					</div>
-				  ))}
 				</div>
-			</figure>
+
+				<!-- Thumbnails interactivos -->
+				<div class="grid grid-cols-3 gap-4 md:gap-6">
+					{nosotrosImages.map((image, index) => (
+						<div 
+							class={`thumbnail-card relative cursor-pointer transition-all duration-500 hover:scale-105 ${
+								index === 0 ? 'ring-2 ring-COLOR2 ring-opacity-100' : 'ring-2 ring-transparent hover:ring-COLOR3 hover:ring-opacity-50'
+							}`}
+							data-index={index}
+						>
+							<div class="relative h-24 md:h-32 lg:h-40 rounded-xl overflow-hidden shadow-lg">
+								<img 
+									src={image.src} 
+									alt={image.alt} 
+									class="w-full h-full object-cover transition-all duration-300 hover:brightness-110"
+								/>
+								<div class="absolute inset-0 bg-gradient-to-t from-COLOR1/30 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+								<div class="absolute bottom-1 left-1 right-1">
+									<div class="bg-white/95 backdrop-blur-sm rounded-lg px-2 py-1.5 transform translate-y-0 opacity-100 transition-all duration-300 border border-white/30 shadow-md">
+										<p class="text-COLOR1 text-xs font-semibold text-center">
+											{index === 0 ? 'Espacio' : index === 1 ? 'Creatividad' : 'Innovación'}
+										</p>
+									</div>
+								</div>
+								<div class="absolute top-2 right-2">
+									<div class={`w-3 h-3 rounded-full transition-all duration-300 ${
+										index === 0 ? 'bg-COLOR2 scale-110' : 'bg-white/50 hover:bg-COLOR3'
+									}`}></div>
+								</div>
+							</div>
+						</div>
+					))}
+				</div>
+
+				<!-- Indicadores de navegación -->
+				<div class="flex justify-center mt-6 space-x-3">
+					{nosotrosImages.map((_, index) => (
+						<button 
+							class={`nav-dot w-3 h-3 rounded-full transition-all duration-300 hover:scale-125 ${
+								index === 0 ? 'bg-COLOR2 scale-110' : 'bg-COLOR1/30 hover:bg-COLOR3'
+							}`}
+							data-index={index}
+						></button>
+					))}
+				</div>
+			</div>
 
 			<!-- HISTORIA, subtitulo y texto -->
 			<Subtitle name={nosotrosText.Subtitle2} bgColor='bg-COLOR2' textColor='COLOR-1' client:visible />
@@ -55,14 +133,20 @@ const mvvContent = [
 			<!-- Mision, vision y valores -->
 			<Subtitle name={nosotrosText.Subtitle3} bgColor='bg-COLOR3' textColor='CBACKGROUND' client:visible />
 			<div class="w-full mt-12">
-				<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-					{mvvContent.map((item) => (
-						<div class="bg-COLOR1 hover:bg-CBACKGROUND text-CBACKGROUND hover:text-COLOR1 rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105">
-							<div class="p-6">
-								<div class="flex items-center justify-center w-12 h-12 bg-COLOR3 rounded-full text-CBACKGROUND text-xl font-bold mb-4">
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-8">
+					{mvvContent.map((item, index) => (
+						<div class={`
+							bg-COLOR1 hover:bg-CBACKGROUND text-CBACKGROUND hover:text-COLOR1 
+							rounded-xl shadow-lg hover:shadow-xl 
+							overflow-hidden transform transition-all duration-500 
+							hover:scale-[1.02] hover:-translate-y-1
+							${index === 2 ? 'md:col-span-2 lg:col-span-1 md:mx-auto lg:mx-0' : ''}
+						`}>
+							<div class="p-6 md:p-8 h-full flex flex-col">
+								<div class="flex items-center justify-center w-14 h-14 md:w-16 md:h-16 bg-COLOR3 rounded-full text-CBACKGROUND text-xl md:text-2xl font-bold mb-6 shadow-md">
 									{item.icon}
 								</div>
-								<p>{item.content}</p>
+								<p class="flex-grow text-sm md:text-base leading-relaxed">{item.content}</p>
 							</div>
 						</div>
 					))}
@@ -78,7 +162,14 @@ const mvvContent = [
 					<div class="flip-card bg-transparent w-full h-64">
 					  <div class="flip-card-inner relative w-full h-full transition-transform duration-700 transform-style-preserve-3d">
 						<div class="flip-card-front absolute w-full h-full bg-CBACKGROUND rounded-lg shadow-lg overflow-hidden">
-						  <img src={member.image} alt={member.name} class="w-full h-48 object-cover" />
+						  <img 
+							src={member.image} 
+							alt={`${member.name}, ${member.role} en Rincón Creativo: ${member.description || 'Miembro del equipo creativo especializado en diseño y desarrollo'}`}
+							class="w-full h-48 object-cover"
+							width="300"
+							height="192"
+							loading="lazy"
+						  />
 						  <div class="p-2">
 							<h3 class="text-lg font-semibold text-COLOR1">{member.name}</h3>
 							<p class="text-sm text-COLOR3">{member.role}</p>
@@ -98,18 +189,151 @@ const mvvContent = [
 
         </section>
     </main>
+
+	<!-- Structured Data for Team -->
+	<script type="application/ld+json" set:html={JSON.stringify(teamSchema)}></script>
 </Layout>
 
 <script>
-	const images = document.querySelectorAll('.relative > div');
-	images.forEach((img) => {
-	  const htmlImg = img as HTMLElement;
-	  htmlImg.addEventListener('mouseenter', () => {
-		htmlImg.style.zIndex = '40';
-	  });
-	  htmlImg.addEventListener('mouseleave', () => {
-		htmlImg.style.zIndex = '';
-	  });
+	// Galería interactiva de nosotros
+	const imageData = [
+		{
+			src: '/images/nosotros1.jpg',
+			title: 'Nuestro Espacio de Trabajo',
+			description: 'Un ambiente creativo donde nacen las mejores ideas y proyectos innovadores.'
+		},
+		{
+			src: '/images/nosotros2.jpg',
+			title: 'Creatividad en Acción',
+			description: 'Cada proyecto es una oportunidad para explorar nuevas posibilidades y soluciones únicas.'
+		},
+		{
+			src: '/images/nosotros3.jpg',
+			title: 'Innovación Constante',
+			description: 'Utilizamos tecnologías de vanguardia para crear experiencias digitales excepcionales.'
+		}
+	];
+
+	let currentImageIndex = 0;
+
+	function updateMainImage(index: number) {
+		const mainImage = document.getElementById('mainImage') as HTMLImageElement;
+		const imageTitle = document.getElementById('imageTitle') as HTMLElement;
+		const imageDescription = document.getElementById('imageDescription') as HTMLElement;
+		
+		if (mainImage && imageTitle && imageDescription) {
+			// Fade out effect
+			mainImage.style.opacity = '0.7';
+			
+			setTimeout(() => {
+				// Update content
+				mainImage.src = imageData[index].src;
+				imageTitle.textContent = imageData[index].title;
+				imageDescription.textContent = imageData[index].description;
+				
+				// Fade in effect
+				mainImage.style.opacity = '1';
+				currentImageIndex = index;
+				
+				// Update active states
+				updateActiveStates(index);
+			}, 200);
+		}
+	}
+
+	function updateActiveStates(activeIndex: number) {
+		// Update thumbnail rings
+		const thumbnails = document.querySelectorAll('.thumbnail-card');
+		thumbnails.forEach((thumb, index) => {
+			const ring = thumb.querySelector('.ring-2');
+			if (index === activeIndex) {
+				thumb.className = thumb.className.replace('ring-transparent', 'ring-COLOR2').replace('ring-opacity-50', 'ring-opacity-100');
+			} else {
+				thumb.className = thumb.className.replace('ring-COLOR2', 'ring-transparent').replace('ring-opacity-100', 'ring-opacity-50');
+			}
+		});
+
+		// Update navigation dots
+		const navDots = document.querySelectorAll('.nav-dot');
+		navDots.forEach((dot, index) => {
+			if (index === activeIndex) {
+				dot.className = dot.className.replace('bg-COLOR1/30', 'bg-COLOR2').replace('hover:bg-COLOR3', '');
+			} else {
+				dot.className = dot.className.replace('bg-COLOR2', 'bg-COLOR1/30');
+				if (!dot.className.includes('hover:bg-COLOR3')) {
+					dot.className += ' hover:bg-COLOR3';
+				}
+			}
+		});
+
+		// Update indicator dots in thumbnails
+		const indicatorDots = document.querySelectorAll('.thumbnail-card .w-3.h-3');
+		indicatorDots.forEach((dot, index) => {
+			if (index === activeIndex) {
+				dot.className = dot.className.replace('bg-white/50', 'bg-COLOR2').replace('hover:bg-COLOR3', 'scale-110');
+			} else {
+				dot.className = dot.className.replace('bg-COLOR2', 'bg-white/50').replace('scale-110', '');
+				if (!dot.className.includes('hover:bg-COLOR3')) {
+					dot.className += ' hover:bg-COLOR3';
+				}
+			}
+		});
+	}
+
+	// Event listeners
+	document.addEventListener('DOMContentLoaded', () => {
+		// Thumbnail clicks
+		const thumbnails = document.querySelectorAll('.thumbnail-card');
+		thumbnails.forEach((thumb, index) => {
+			thumb.addEventListener('click', () => {
+				updateMainImage(index);
+			});
+		});
+
+		// Navigation dot clicks
+		const navDots = document.querySelectorAll('.nav-dot');
+		navDots.forEach((dot, index) => {
+			dot.addEventListener('click', () => {
+				updateMainImage(index);
+			});
+		});
+
+		// Auto-rotation (optional)
+		let autoRotateInterval: number;
+		
+		function startAutoRotation() {
+			autoRotateInterval = setInterval(() => {
+				const nextIndex = (currentImageIndex + 1) % imageData.length;
+				updateMainImage(nextIndex);
+			}, 5000); // Change image every 5 seconds
+		}
+
+		function stopAutoRotation() {
+			if (autoRotateInterval) {
+				clearInterval(autoRotateInterval);
+			}
+		}
+
+		// Start auto-rotation
+		startAutoRotation();
+
+		// Pause auto-rotation on hover
+		const mainContainer = document.querySelector('.main-image-container');
+		if (mainContainer) {
+			mainContainer.addEventListener('mouseenter', stopAutoRotation);
+			mainContainer.addEventListener('mouseleave', startAutoRotation);
+		}
+
+		// Keyboard navigation
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'ArrowLeft') {
+				const prevIndex = currentImageIndex === 0 ? imageData.length - 1 : currentImageIndex - 1;
+				updateMainImage(prevIndex);
+			} else if (e.key === 'ArrowRight') {
+				const nextIndex = (currentImageIndex + 1) % imageData.length;
+				updateMainImage(nextIndex);
+			}
+		});
 	});
 </script>
   

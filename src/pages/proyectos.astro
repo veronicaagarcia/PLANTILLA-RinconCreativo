@@ -3,13 +3,50 @@ import Layout from '../layouts/Layout.astro'
 import { proyectosText } from '../mock/textViews/proyectosText'
 import Subtitle from '../components/Subtitle'
 import Text from '../components/Text'
+import Breadcrumb from '../components/Breadcrumb.astro'
 import { Proyectos as Proyectosdestacados } from '../mock/proyectos'
 import Button from '../components/Button'
+
+// Generate structured data for projects portfolio
+const portfolioSchema = {
+	"@context": "https://schema.org",
+	"@type": "CreativeWork",
+	"name": "Portfolio de Proyectos - Rincón Creativo",
+	"description": "Muestra de proyectos destacados realizados por Rincón Creativo en diseño gráfico, branding y desarrollo web",
+	"creator": {
+		"@type": "Organization",
+		"name": "Rincón Creativo"
+	},
+	"workExample": Proyectosdestacados.map((proyecto) => ({
+		"@type": "CreativeWork",
+		"name": proyecto.name,
+		"description": proyecto.text,
+		"creator": {
+			"@type": "Organization", 
+			"name": "Rincón Creativo"
+		},
+		"genre": "Diseño Gráfico",
+		"url": proyecto.url,
+		"image": `https://hermesplantilla1.netlify.app${proyecto.img}`,
+		"dateCreated": "2024"
+	}))
+};
+
+// Breadcrumb items
+const breadcrumbItems = [
+	{ name: "Inicio", url: "/" },
+	{ name: "Proyectos", url: "/proyectos" }
+];
 ---
 
 <Layout title={proyectosText.metaTitle} content={proyectosText.metaContent}>
 	<main>
 		<section class="w-full mx-auto px-4 py-8 md:w-11/12 xl:w-10/12 border-2 border-t-0 border-b-0 border-dashed md:border-3 md:border-y-0 border-COLOR1 flex flex-col justify-center items-center">
+
+			<!-- Breadcrumb Navigation -->
+			<div class="w-full mb-6">
+				<Breadcrumb items={breadcrumbItems} />
+			</div>
 
 			<!-- Subtitulo y texto -->
 			<Subtitle name={proyectosText.Subtitle1} bgColor='bg-COLOR3' textColor='CBACKGROUND' client:visible />
@@ -24,7 +61,14 @@ import Button from '../components/Button'
                                 <h3 class={`text-${item.textColor} bg-${item.bgNameColor} text-sm text-center animate-slideUp md:text-base xl:text-lg w-fit mx-auto rounded-sm px-1 md:px-2 xl:px-3 mb-2 md:mb-4 xl:mb-6`}>{item.name}</h3>
 								<p>{item.text}</p>
                                 <figure class="overflow-hidden h-[240px] my-2 md:h-[280px] rounded-xl z-10">
-                                    <img class="grayscale hover:grayscale-0 transition duration-300 ease-in-out bg-center object-cover w-full h-full" src={item.img} alt={`Imagen de ${item.name}`} />
+                                    <img 
+                                        class="grayscale hover:grayscale-0 transition duration-300 ease-in-out bg-center object-cover w-full h-full" 
+                                        src={item.img} 
+                                        alt={`Proyecto ${item.name}: ${item.description && item.description[0] ? item.description[0].substring(0, 100) + '...' : 'Caso de estudio de diseño creativo realizado por Rincón Creativo'}`}
+                                        width="350"
+                                        height="280"
+                                        loading="lazy"
+                                    />
                                 </figure>
                                 <p class="font-extralight text-xs md:text-sm xl:text-base leading-snug">{item.description}</p>
 								<div class="flex items-center justify-center mt-2 md:mt-4">
@@ -40,4 +84,7 @@ import Button from '../components/Button'
             <Text text={proyectosText.text2} textColor='COLOR1' client:visible/>
         </section>
     </main>
+
+	<!-- Structured Data for Projects Portfolio -->
+	<script type="application/ld+json" set:html={JSON.stringify(portfolioSchema)}></script>
 </Layout>

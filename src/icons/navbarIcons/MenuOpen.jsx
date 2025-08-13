@@ -5,17 +5,17 @@ export function MenuOpen({ className }) {
 			width='22'
 			height='22'
 			viewBox='0 0 24 24'
-			fill='#2E384D'
+			fill='none'
 			stroke='currentColor'
 			strokeWidth='3'
 			strokeLinecap='round'
 			strokeLinejoin='round'
-			className={`icon icon-tabler icons-tabler-outline icon-tabler-menu-2' ${className}`}
+			className={`icon icon-tabler icons-tabler-outline icon-tabler-menu-2 ${className}`}
 		>
 			<path stroke='none' d='M0 0h24v24H0z' fill='none' />
-			<path d='M4 18h10' />
-			<path d='M6 12h13' />
-			<path d='M4 6h16' />
+			<path d='M4 6l16 0' />
+			<path d='M4 12l16 0' />
+			<path d='M4 18l16 0' />
 		</svg>
 	);
 }

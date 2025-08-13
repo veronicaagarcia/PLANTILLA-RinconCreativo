@@ -1,0 +1,308 @@
+---
+// Enhanced intersection observer component for smooth animations
+export interface Props {
+  class?: string;
+  threshold?: number;
+  rootMargin?: string;
+  animationClass?: string;
+  delay?: number;
+  duration?: number;
+  easing?: string;
+  once?: boolean;
+  stagger?: boolean;
+  staggerDelay?: number;
+}
+
+const { 
+  class: className = '',
+  threshold = 0.1,
+  rootMargin = '0px 0px -50px 0px',
+  animationClass = 'animate-slideUpSoft',
+  delay = 0,
+  duration = 600,
+  easing = 'ease-out',
+  once = true,
+  stagger = false,
+  staggerDelay = 100
+} = Astro.props;
+---
+
+<div 
+  class={`smooth-observer ${className}`}
+  data-threshold={threshold}
+  data-root-margin={rootMargin}
+  data-animation-class={animationClass}
+  data-delay={delay}
+  data-duration={duration}
+  data-easing={easing}
+  data-once={once}
+  data-stagger={stagger}
+  data-stagger-delay={staggerDelay}
+>
+  <slot />
+</div>
+
+<script>
+  class SmoothIntersectionObserver {
+    constructor() {
+      this.observers = new Map();
+      this.animatedElements = new Set();
+      this.init();
+    }
+
+    init() {
+      // Check if user prefers reduced motion
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      
+      if (prefersReducedMotion) {
+        this.handleReducedMotion();
+        return;
+      }
+
+      // Wait for DOM to be ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => this.observeElements());
+      } else {
+        this.observeElements();
+      }
+
+      // Re-observe elements when new content is added
+      this.setupMutationObserver();
+    }
+
+    handleReducedMotion() {
+      // Immediately show all elements without animation
+      const elements = document.querySelectorAll('.smooth-observer');
+      elements.forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+        el.classList.add('motion-reduced');
+      });
+    }
+
+    observeElements() {
+      const elements = document.querySelectorAll('.smooth-observer:not([data-observed])');
+      
+      // Group elements by their observer settings for performance
+      const groups = new Map();
+      
+      elements.forEach(el => {
+        const threshold = parseFloat(el.dataset.threshold || '0.1');
+        const rootMargin = el.dataset.rootMargin || '0px 0px -50px 0px';
+        const key = `${threshold}-${rootMargin}`;
+        
+        if (!groups.has(key)) {
+          groups.set(key, { threshold, rootMargin, elements: [] });
+        }
+        groups.get(key).elements.push(el);
+        el.setAttribute('data-observed', 'true');
+      });
+
+      // Create observers for each group
+      groups.forEach(({ threshold, rootMargin, elements }) => {
+        const observer = new IntersectionObserver((entries) => {
+          this.handleIntersection(entries);
+        }, { 
+          threshold, 
+          rootMargin,
+          // Performance optimization
+          trackVisibility: true,
+          delay: 100
+        });
+
+        elements.forEach(el => observer.observe(el));
+        this.observers.set(`${threshold}-${rootMargin}`, observer);
+      });
+    }
+
+    handleIntersection(entries) {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && entry.isVisible) {
+          this.animateElement(entry.target);
+        } else if (!entry.target.dataset.once && !entry.isIntersecting) {
+          // Re-animate if not 'once' and element is out of view
+          this.resetElement(entry.target);
+        }
+      });
+    }
+
+    animateElement(element) {
+      if (this.animatedElements.has(element) && element.dataset.once === 'true') {
+        return;
+      }
+
+      const animationClass = element.dataset.animationClass || 'animate-slideUpSoft';
+      const delay = parseInt(element.dataset.delay || '0');
+      const duration = parseInt(element.dataset.duration || '600');
+      const easing = element.dataset.easing || 'ease-out';
+      const stagger = element.dataset.stagger === 'true';
+      const staggerDelay = parseInt(element.dataset.staggerDelay || '100');
+
+      // Handle staggered animations
+      if (stagger) {
+        const children = element.children;
+        Array.from(children).forEach((child, index) => {
+          setTimeout(() => {
+            this.applyAnimation(child, animationClass, duration, easing);
+          }, delay + (index * staggerDelay));
+        });
+      } else {
+        setTimeout(() => {
+          this.applyAnimation(element, animationClass, duration, easing);
+        }, delay);
+      }
+
+      this.animatedElements.add(element);
+
+      // Unobserve if 'once' is true
+      if (element.dataset.once === 'true') {
+        this.observers.forEach(observer => observer.unobserve(element));
+      }
+    }
+
+    applyAnimation(element, animationClass, duration, easing) {
+      // Set custom CSS properties for duration and easing
+      element.style.setProperty('--animation-duration', `${duration}ms`);
+      element.style.setProperty('--animation-easing', easing);
+      
+      // Add animation class
+      element.classList.add('animated', animationClass);
+      
+      // Trigger reflow for smooth animation
+      element.offsetHeight;
+    }
+
+    resetElement(element) {
+      const animationClass = element.dataset.animationClass || 'animate-slideUpSoft';
+      element.classList.remove('animated', animationClass);
+      this.animatedElements.delete(element);
+    }
+
+    setupMutationObserver() {
+      const mutationObserver = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.type === 'childList') {
+            mutation.addedNodes.forEach((node) => {
+              if (node.nodeType === Node.ELEMENT_NODE) {
+                const newElements = node.querySelectorAll('.smooth-observer:not([data-observed])');
+                if (newElements.length > 0) {
+                  // Debounce to avoid excessive calls
+                  clearTimeout(this.observeTimeout);
+                  this.observeTimeout = setTimeout(() => this.observeElements(), 100);
+                }
+              }
+            });
+          }
+        });
+      });
+
+      mutationObserver.observe(document.body, {
+        childList: true,
+        subtree: true
+      });
+    }
+
+    destroy() {
+      this.observers.forEach(observer => observer.disconnect());
+      this.observers.clear();
+      this.animatedElements.clear();
+    }
+  }
+
+  // Initialize the smooth observer
+  const smoothObserver = new SmoothIntersectionObserver();
+
+  // Cleanup on page unload
+  window.addEventListener('beforeunload', () => {
+    smoothObserver.destroy();
+  });
+</script>
+
+<style>
+  .smooth-observer {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 
+      opacity var(--animation-duration, 600ms) var(--animation-easing, ease-out),
+      transform var(--animation-duration, 600ms) var(--animation-easing, ease-out);
+    will-change: opacity, transform;
+  }
+
+  .smooth-observer.motion-reduced {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  /* Animation states */
+  .smooth-observer.animated.animate-slideUpSoft {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .smooth-observer.animated.animate-fadeInLeft {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .smooth-observer.animated.animate-fadeInRight {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .smooth-observer.animated.animate-fadeInUp {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .smooth-observer.animated.animate-fadeInDown {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .smooth-observer.animated.animate-scaleInSoft {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .smooth-observer.animated.animate-slideUp {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Initial states for different animations */
+  .smooth-observer[data-animation-class*="fadeInLeft"] {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+
+  .smooth-observer[data-animation-class*="fadeInRight"] {
+    transform: translateX(30px);
+    opacity: 0;
+  }
+
+  .smooth-observer[data-animation-class*="fadeInDown"] {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+
+  .smooth-observer[data-animation-class*="scaleIn"] {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+
+  /* Performance optimizations */
+  .smooth-observer {
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .smooth-observer {
+      animation: none !important;
+      transition: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+</style>

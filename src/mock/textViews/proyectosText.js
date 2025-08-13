@@ -1,6 +1,6 @@
 export // Todo contenido personalizable/reemplazable. Desde el nombre en la pestalla del navedagor, como h1-h6, textos, etc de la VISTA PROYECTOS
 const proyectosText = {
-    metaTitle: "INNOVATEProweb | PROYECTOS",
+    metaTitle: "Hermes | PROYECTOS",
     metaContent: "Confía en nosotros. Humanizamos la tecnología para que sea más accesible y cercana, ayudándote a establecer tu presencia en línea o impulsar el crecimiento de tu negocio en la web. Ya sea que necesites un sitio web, una tienda en línea, una aplicación personalizada que resuelva tus problemas, un rediseño de imagen, o la gestión de tus redes sociales, tenemos la solución que buscas.",
     Subtitle1: "Conoce algunos de nuestros trabajos destacados",
     text1:"Cada proyecto que realizamos cuenta una historia única, un recorrido lleno de creatividad, innovación y compromiso. Desde pequeñas empresas hasta grandes marcas, hemos trabajado con clientes de distintos sectores para ayudarlos a brillar y destacar en sus mercados. Sumérgete en nuestro portafolio y descubre cómo nuestras soluciones personalizadas y estrategias creativas han dado vida a las ideas de nuestros clientes, elevando su presencia y generando resultados impactantes.",

@@ -1,13 +1,13 @@
-🚀 INNOVATEProweb Template
-Este proyecto es una plantilla web diseñada por INNOVATEProweb para mostrar a posibles clientes las capacidades y el estilo visual en el desarrollo de sitios web. La plantilla es reutilizable y fácilmente personalizable para adaptarse a diferentes necesidades de clientes y proyectos.
+🚀 Hermes Template
+Este proyecto es una plantilla web diseñada por Hermes para mostrar a posibles clientes las capacidades y el estilo visual en el desarrollo de sitios web. La plantilla es reutilizable y fácilmente personalizable para adaptarse a diferentes necesidades de clientes y proyectos.
 
 ✨ Descripción
-Esta plantilla es un ejemplo visual y funcional de cómo INNOVATEProweb puede ayudar a los negocios a establecer su presencia en línea de forma rápida y profesional. Además de ser una demo para clientes potenciales, está diseñada para facilitar la creación de sitios personalizados con agilidad y eficiencia.
+Esta plantilla es un ejemplo visual y funcional de cómo Hermes puede ayudar a los negocios a establecer su presencia en línea de forma rápida y profesional. Además de ser una demo para clientes potenciales, está diseñada para facilitar la creación de sitios personalizados con agilidad y eficiencia.
 
-🔗 Link: https://innovateprowebplantilla1.netlify.app/
+🔗 Link: https://plantilla1.hermes.website
 
 🔑 Características principales
-🎨 Diseño moderno y profesional: Creada con un enfoque en la innovación y la humanización, reflejando los valores de INNOVATEProweb.
+🎨 Diseño moderno y profesional: Creada con un enfoque en la innovación y la humanización, reflejando los valores de Hermes.
 ⚡ Tecnologías utilizadas: Astro y Tailwind CSS para un desarrollo rápido, eficiente y de alto rendimiento.
 ♻️ Reutilizable: Adaptable para diferentes tipos de proyectos.
 🚀 Optimización SEO y rendimiento: Incluye prácticas recomendadas para asegurar buen rendimiento y visibilidad en motores de búsqueda.
@@ -36,8 +36,8 @@ Los estilos están gestionados con Tailwind CSS. Puedes modificar las clases dir
 
 🖼️ Imágenes y recursos
 Reemplaza los recursos en el directorio public para personalizar imágenes, logotipos y otros medios.
-Al momento de cambiarse las imágenes recomendamos que se les ponga el mismo nombre que la imágen que se reemplaza logrando asi un resultado con menos complicaciones. Es decir proyecto1.png  que se cambie por la foto que quiera mostrar, pero que se le de el mismo nombre.
-Si se pretende un trabajo más profesional, una vez que todo este funcionando, volver a cambiar el nombre de la imágen por algo muy descriptivo para ayudar al SEO orgánico. EJEMPLO : img-proyectoweb-plantilla-innovateproweb.png
+Al momento de cambiarse las imágenes recomendamos que se les ponga el mismo nombre que la imágen que se reemplaza logrando asi un resultado con menos complicaciones. Es decir proyecto1.png que se cambie por la foto que quiera mostrar, pero que se le de el mismo nombre.
+Si se pretende un trabajo más profesional, una vez que todo este funcionando, volver a cambiar el nombre de la imágen por algo muy descriptivo para ayudar al SEO orgánico. EJEMPLO : img-proyectoweb-plantilla-hermes.png
 
 🛠️ Tecnologías Utilizadas
 🌐 Astro: Framework moderno para construir sitios web estáticos y altamente eficientes.

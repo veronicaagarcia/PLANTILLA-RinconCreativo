@@ -2,8 +2,8 @@
 export const homeText = {
     urlLogo:"/LogoRinconCreativo.png",
     clientName: "Rincón Creativo",
-    imageContentSeo: "/images/INNOVATEProwebSiteWeb.png",
-    metaTitle: "INNOVATEProweb | TEMPLATE 1 HOME",
+    imageContentSeo: "/images/HermesSiteWeb.png",
+    metaTitle: "Hermes | INICIO",
     metaContent: "Confía en nosotros. Humanizamos la tecnología para que sea más accesible y cercana, ayudándote a establecer tu presencia en línea o impulsar el crecimiento de tu negocio en la web. Ya sea que necesites un sitio web, una tienda en línea, una aplicación personalizada que resuelva tus problemas, un rediseño de imagen, o la gestión de tus redes sociales, tenemos la solución que buscas.",
     homeTitleParte1: "Diseñando el futuro de las marcas,",
     homeTitleParte2: "dando vida a cada idea, un proyecto a la vez",

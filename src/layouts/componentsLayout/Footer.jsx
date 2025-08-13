@@ -1,49 +1,307 @@
+import { useState, useEffect } from 'react';
 import { LogoComponent } from "../../components/LogoComponent"
 import { FooterText } from "../../mock/footer";
 import { homeText } from "../../mock/textViews/homeText";
-import Nav from "./Nav";
 
 export default function Footer() {
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 768);
+    };
     
+    // Set initial value
+    handleResize();
+    
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return(
-    <footer className="z-10 w-full bg-COLOR1">
-      <section className={`w-full z-10 h-fit p-2 md:p-6 xl:p-8 shadow-lg bg-COLOR1 text-CBACKGROUND items-center md:h-18 md:justify-between flex flex-col justify-around gap-8`}>
+    <>
+      <style jsx global>{`
+        .footer-dark {
+          background-color: #1A1E2E !important;
+          color: #F4F5F7 !important;
+        }
+        .footer-dark * {
+          color: #F4F5F7 !important;
+        }
+        .footer-dark a {
+          color: #F4F5F7 !important;
+        }
+        .footer-dark p {
+          color: #F4F5F7 !important;
+        }
+        .footer-dark h2 {
+          color: #F4F5F7 !important;
+        }
+      `}</style>
+      
+      <footer className="footer-dark" style={{
+        backgroundColor: '#1A1E2E',
+        color: '#F4F5F7',
+        width: '100%',
+        zIndex: 10,
+        padding: '2rem 0'
+      }}>
+        <section className="footer-dark" style={{
+          backgroundColor: '#1A1E2E',
+          color: '#F4F5F7',
+          width: '100%',
+          maxWidth: '1200px',
+          margin: '0 auto',
+          padding: isDesktop ? '2rem' : '1rem',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '2rem'
+        }}>
 
-        {/* LOGO Y TITULO*/}
-        <div className={`w-full flex flex-col justify-center items-center gap-1 md:gap-2 xl:gap-5`}>
-          <LogoComponent className="size-11 md:size-14 xl:size-20 rounded-full hover:scale-110" client:visible />
-          <h2 className={`font-bold bg-clip-text text-CBACKGROUND justify-center items-center font-heading text-xl s:text-xl lg:text-3xl `}>
-            {homeText.clientName}
-          </h2> 
-        </div>
+          {/* LOGO Y TITULO */}
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '0.5rem'
+          }}>
+            <LogoComponent 
+              style={{
+                width: isDesktop ? '3rem' : '2.5rem',
+                height: isDesktop ? '3rem' : '2.5rem',
+                borderRadius: '50%'
+              }}
+            />
+            <h2 style={{
+              color: '#F4F5F7',
+              fontWeight: 'bold',
+              fontSize: isDesktop ? '2rem' : '1.5rem',
+              textAlign: 'center',
+              fontFamily: 'Bebas Neue, sans-serif',
+              margin: 0
+            }}>
+              {homeText.clientName}
+            </h2>
+          </div>
 
-        {/* barra de navegacion */}
-        <Nav client:load/>
-         
-        {/* Contacto */}
-        <div className="flex flex-col mb-5 w-fit gap-2 md:gap-3 lg:gap-4 xl:gap-6 tracking-wider items-center text-sm font-sans text-BACKGROUND font-extralight md:flex md:flex-row md:items-end md:h-full md:my-auto md:text-[15px] xl:text-base">
-          <p>Email: {FooterText.email}</p>
-          <p>Teléfono: {FooterText.tel}</p>
-          <p>Dirección: {FooterText.text4}</p>
-        </div>
+          {/* NAVEGACION */}
+          <nav style={{
+            display: 'flex',
+            flexDirection: isDesktop ? 'row' : 'column',
+            gap: isDesktop ? '2rem' : '1rem',
+            alignItems: 'center'
+          }}>
+            <a 
+              href="/" 
+              className="footer-nav-link group relative px-3 py-2 rounded-lg"
+              style={{
+                color: '#F4F5F7',
+                textDecoration: 'none',
+                fontSize: '1rem',
+                transition: 'all 0.3s ease',
+                position: 'relative'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.color = '#FFD700';
+                e.target.style.transform = 'translateY(-2px)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.color = '#F4F5F7';
+                e.target.style.transform = 'translateY(0)';
+              }}
+            >
+              Inicio
+            </a>
+            <a 
+              href="/nosotros" 
+              className="footer-nav-link group relative px-3 py-2 rounded-lg"
+              style={{
+                color: '#F4F5F7',
+                textDecoration: 'none',
+                fontSize: '1rem',
+                transition: 'all 0.3s ease',
+                position: 'relative'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.color = '#FFD700';
+                e.target.style.transform = 'translateY(-2px)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.color = '#F4F5F7';
+                e.target.style.transform = 'translateY(0)';
+              }}
+            >
+              Nosotros
+            </a>
+            <a 
+              href="/proyectos" 
+              className="footer-nav-link group relative px-3 py-2 rounded-lg"
+              style={{
+                color: '#F4F5F7',
+                textDecoration: 'none',
+                fontSize: '1rem',
+                transition: 'all 0.3s ease',
+                position: 'relative'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.color = '#FFD700';
+                e.target.style.transform = 'translateY(-2px)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.color = '#F4F5F7';
+                e.target.style.transform = 'translateY(0)';
+              }}
+            >
+              Proyectos
+            </a>
+            <a 
+              href="/servicios" 
+              className="footer-nav-link group relative px-3 py-2 rounded-lg"
+              style={{
+                color: '#F4F5F7',
+                textDecoration: 'none',
+                fontSize: '1rem',
+                transition: 'all 0.3s ease',
+                position: 'relative'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.color = '#FFD700';
+                e.target.style.transform = 'translateY(-2px)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.color = '#F4F5F7';
+                e.target.style.transform = 'translateY(0)';
+              }}
+            >
+              Servicios
+            </a>
+            <a 
+              href="/contacto" 
+              className="footer-nav-link group relative px-3 py-2 rounded-lg"
+              style={{
+                color: '#F4F5F7',
+                textDecoration: 'none',
+                fontSize: '1rem',
+                transition: 'all 0.3s ease',
+                position: 'relative'
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.color = '#FFD700';
+                e.target.style.transform = 'translateY(-2px)';
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.color = '#F4F5F7';
+                e.target.style.transform = 'translateY(0)';
+              }}
+            >
+              Contacto
+            </a>
+          </nav>
 
-        {/* redes */}
-        <div className="flex mb-5 w-fit gap-2 md:gap-3 lg:gap-4 xl:gap-6 items-center">
-          <a href={FooterText.link1} target="_blank" className="hover:scale-110">
-            <img className="" src={FooterText.imgLink1} alt={`Icono de red social`} />
-          </a>
-          <a href={FooterText.link2} target="_blank" className="hover:scale-110">
-            <img className="" src={FooterText.imgLink2} alt={`Icono de red social`} />
-          </a>
-          <a href={FooterText.link3} target="_blank" className="hover:scale-110">
-            <img className="" src={FooterText.imgLink3} alt={`Icono de red social`} />
-          </a>  
-        </div>
+          {/* CONTACTO */}
+          <div style={{
+            display: 'flex',
+            flexDirection: isDesktop ? 'row' : 'column',
+            gap: isDesktop ? '2rem' : '0.5rem',
+            alignItems: 'center',
+            textAlign: 'center'
+          }}>
+            <p style={{
+              color: '#F4F5F7',
+              fontSize: '0.875rem',
+              margin: 0
+            }}>
+              Email: {FooterText.email}
+            </p>
+            <p style={{
+              color: '#F4F5F7',
+              fontSize: '0.875rem',
+              margin: 0
+            }}>
+              Teléfono: {FooterText.tel}
+            </p>
+            <p style={{
+              color: '#F4F5F7',
+              fontSize: '0.875rem',
+              margin: 0
+            }}>
+              Dirección: {FooterText.text4}
+            </p>
+          </div>
 
-        <hr className="w-full text-sm text-CBACKGROUND"/>
-        <p className="font-thin text-center">{FooterText.text5}</p>
+          {/* REDES SOCIALES */}
+          <div style={{
+            display: 'flex',
+            gap: '1.5rem',
+            alignItems: 'center'
+          }}>
+            <a href={FooterText.link1} target="_blank" rel="noopener noreferrer">
+              <img 
+                src={FooterText.imgLink1} 
+                alt={`Síguenos en ${FooterText.link1.includes('facebook') ? 'Facebook' : FooterText.link1.includes('instagram') ? 'Instagram' : FooterText.link1.includes('twitter') ? 'Twitter' : FooterText.link1.includes('linkedin') ? 'LinkedIn' : 'nuestra red social'} - ${homeText.clientName}`}
+                style={{
+                  width: '24px',
+                  height: '24px',
+                  transition: 'transform 0.3s ease'
+                }}
+                onMouseEnter={(e) => e.target.style.transform = 'scale(1.2)'}
+                onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+              />
+            </a>
+            <a href={FooterText.link2} target="_blank" rel="noopener noreferrer">
+              <img 
+                src={FooterText.imgLink2} 
+                alt={`Síguenos en ${FooterText.link2.includes('facebook') ? 'Facebook' : FooterText.link2.includes('instagram') ? 'Instagram' : FooterText.link2.includes('twitter') ? 'Twitter' : FooterText.link2.includes('linkedin') ? 'LinkedIn' : 'nuestra red social'} - ${homeText.clientName}`}
+                style={{
+                  width: '24px',
+                  height: '24px',
+                  transition: 'transform 0.3s ease'
+                }}
+                onMouseEnter={(e) => e.target.style.transform = 'scale(1.2)'}
+                onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+              />
+            </a>
+            <a href={FooterText.link3} target="_blank" rel="noopener noreferrer">
+              <img 
+                src={FooterText.imgLink3} 
+                alt={`Síguenos en ${FooterText.link3.includes('facebook') ? 'Facebook' : FooterText.link3.includes('instagram') ? 'Instagram' : FooterText.link3.includes('twitter') ? 'Twitter' : FooterText.link3.includes('linkedin') ? 'LinkedIn' : 'nuestra red social'} - ${homeText.clientName}`}
+                style={{
+                  width: '24px',
+                  height: '24px',
+                  transition: 'transform 0.3s ease'
+                }}
+                onMouseEnter={(e) => e.target.style.transform = 'scale(1.2)'}
+                onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+              />
+            </a>
+          </div>
 
-      </section>
-    </footer>
+          {/* DIVIDER */}
+          <div style={{
+            width: '80%',
+            height: '1px',
+            backgroundColor: '#F4F5F7',
+            opacity: 0.3
+          }} />
+
+          {/* COPYRIGHT */}
+          <p style={{
+            color: '#F4F5F7',
+            fontSize: '0.875rem',
+            textAlign: 'center',
+            opacity: 0.8,
+            margin: 0,
+            fontWeight: 300
+          }}>
+            {FooterText.text5}
+          </p>
+
+        </section>
+      </footer>
+    </>
   )
 }

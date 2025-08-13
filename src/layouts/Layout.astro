@@ -2,6 +2,7 @@
 import { homeText } from "../mock/textViews/homeText"
 import Footer from "./componentsLayout/Footer"
 import Navbar from "./componentsLayout/Navbar"
+import ScrollToTop from "../components/ScrollToTop"
 
 const { title, content } = Astro.props
 
@@ -10,30 +11,146 @@ const { title, content } = Astro.props
 <!doctype html>
 <html lang="es">
 	<head>
-		<head>
-			<meta charset="UTF-8" />
-			<meta name="description" content="Astro description" />
-			<meta name="viewport" content="width=device-width" />
-			<link rel="icon" type="image/svg+xml" href={homeText.urlLogo}/>
-			<meta name="generator" content={Astro.generator} />
-			<meta name="description" content={content} />
-			<title>{title}</title>
-			<!-- Enlace fuentes -->
-			<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
-			<!-- etiquetas para mejorar SEO organico - optimizan para ser compartidas en redes  -->
-			<meta property="og:title" content={title} />
-			<meta property="og:description" content={content} />
-			<meta property="og:image" content={homeText.imageContentSeo} />
-			<meta property="og:type" content="website" />
-	
-			<meta name="twitter:card" content="summary_large_image" />
-			<meta name="twitter:title" content={title} />
-			<meta name="twitter:description" content={content} />
-			<meta name="twitter:image" content={homeText.imageContentSeo} />
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/png" href={homeText.urlLogo}/>
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={content} />
+		<title>{title}</title>
+		
+		<!-- Security Headers -->
+		<meta http-equiv="X-Content-Type-Options" content="nosniff">
+		<meta http-equiv="X-Frame-Options" content="DENY">
+		<meta http-equiv="X-XSS-Protection" content="1; mode=block">
+		<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+		<meta http-equiv="Permissions-Policy" content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()">
+		
+		<!-- Performance optimizations -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Sans+Pro:wght@400;600&display=swap" rel="stylesheet">
+		
+		<!-- SEO optimizations -->
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={content} />
+		<meta property="og:image" content={homeText.imageContentSeo} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={Astro.url} />
+		<meta property="og:site_name" content="Hermes" />
+
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={content} />
+		<meta name="twitter:image" content={homeText.imageContentSeo} />
+		
+		<!-- Additional performance hints -->
+		<meta name="theme-color" content="#1A1E2E">
+		<link rel="prefetch" href="/images/HomeImg.jpg" />
+		
+		<!-- PWA Manifest -->
+		<link rel="manifest" href="/manifest.json">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="default">
+		<meta name="apple-mobile-web-app-title" content="Hermes">
+		<link rel="apple-touch-icon" href="/LogoRinconCreativo.png">
+		
+		<!-- Skip to content link for accessibility -->
+		<style>
+			/* CSS Custom Properties for Better Color Management */
+			:root {
+				--color-primary: #1A1E2E;
+				--color-accent: #FF3366;
+				--color-accent-accessible: #E62958; /* Improved contrast */
+				--color-secondary: #00C9A7;
+				--color-secondary-accessible: #00A085; /* Improved contrast */
+				--color-background: #F4F5F7;
+				--color-text-primary: #1A1E2E;
+				--color-text-on-dark: #F4F5F7;
+			}
+
+			.skip-link {
+				position: absolute;
+				top: -40px;
+				left: 6px;
+				background: var(--color-primary);
+				color: var(--color-text-on-dark);
+				padding: 8px;
+				text-decoration: none;
+				border-radius: 4px;
+				z-index: 1000;
+				transition: top 0.3s ease;
+			}
+			.skip-link:focus {
+				top: 6px;
+			}
+			
+			/* Focus indicators for better accessibility */
+			button:focus-visible,
+			a:focus-visible,
+			input:focus-visible,
+			textarea:focus-visible {
+				outline: 2px solid var(--color-accent-accessible);
+				outline-offset: 2px;
+			}
+		</style>
+		
+		<!-- Structured Data - Organization Schema -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "Organization",
+			"name": "Rincón Creativo",
+			"alternateName": "Hermes",
+			"url": "https://hermesplantilla1.netlify.app/",
+			"logo": "https://hermesplantilla1.netlify.app/LogoRinconCreativo.png",
+			"description": "Estudio de diseño creativo especializado en identidad visual, diseño gráfico, packaging y desarrollo web. Transformamos ideas en experiencias visuales únicas.",
+			"email": "admin@hermes.website",
+			"telephone": "+123 456 789",
+			"address": {
+				"@type": "PostalAddress",
+				"streetAddress": "Av. Uruguay y Libertador 1200",
+				"addressLocality": "Ciudad",
+				"addressCountry": "UY"
+			},
+			"sameAs": [
+				"https://www.instagram.com/hermes.website/",
+				"https://www.hermes.website/"
+			],
+			"founder": {
+				"@type": "Person",
+				"name": "Laura Martínez",
+				"jobTitle": "Directora Creativa"
+			},
+			"areaServed": "Uruguay",
+			"serviceType": [
+				"Identidad Visual",
+				"Diseño Gráfico", 
+				"Diseño de Packaging",
+				"Diseño Web",
+				"Gestión de Redes Sociales"
+			],
+			"knowsAbout": [
+				"Branding",
+				"Identidad Corporativa",
+				"Diseño Gráfico",
+				"Packaging",
+				"UX/UI Design",
+				"Desarrollo Web",
+				"Marketing Digital"
+			]
+		}
+		</script>
+
+		<!-- Performance Monitoring -->
+		<script type="module" src="/src/utils/webVitals.js"></script>
 	</head>
-	<body class="bg-CBACKGROUND font-sans overflow-y-scroll font-semibold text-sm md:text-base xl:text-lg">
+	<body class="bg-CBACKGROUND font-sans overflow-y-scroll font-semibold text-sm md:text-base xl:text-lg antialiased">
+		<a href="#main-content" class="skip-link">Saltar al contenido principal</a>
 		<Navbar client:load />
-		<slot />
+		<main id="main-content" class="min-h-screen focus:outline-none" tabindex="-1">
+			<slot />
+		</main>
+		<Footer client:load/>
+		<ScrollToTop client:load />
 	</body>
-	<Footer client:load/>
 </html>
